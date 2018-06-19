@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 import re
 
 
@@ -21,6 +20,3 @@ def get_ratings():
         if rate != "N/A":
             ratings[name] = int(float(rate) * 10)
     return ratings
-
-
-print(get_ratings())

@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 import re
 import cfscrape
 
@@ -16,6 +15,3 @@ def get_ratings():
         rate = item.select('span.rating-text')[0].text
         ratings[name] = int(float(rate) * 20)
     return ratings
-
-
-pprint(get_ratings())

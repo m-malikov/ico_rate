@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 import re
 import cfscrape
 
@@ -29,6 +28,3 @@ def get_ratings():
 
             ratings[name] = rate
     return ratings
-
-
-pprint(get_ratings())

@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 import re
 
 
@@ -24,6 +23,3 @@ def get_ratings():
                 ratings[name] = rating
 
     return ratings
-
-
-print(get_ratings())

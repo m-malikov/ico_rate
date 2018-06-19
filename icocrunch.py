@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 
 
 def get_ratings():
@@ -14,6 +13,3 @@ def get_ratings():
             rate = item.select('p')[0].text
             ratings[name] = int(float(rate) * 10)
     return ratings
-
-
-print(get_ratings())

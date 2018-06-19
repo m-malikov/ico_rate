@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 
 
 def get_ratings():
@@ -29,6 +28,3 @@ def get_ratings():
                 rate = int(float(rate)*20)
                 ratings[name] = rate
     return ratings
-
-
-print(get_ratings())

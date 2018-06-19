@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 
 
 def get_ratings():
@@ -15,6 +14,3 @@ def get_ratings():
                 rate = item.select('div.icoListItem__rate')[0].text.strip()
                 ratings[name] = int(float(rate) * 10)
     return ratings
-
-
-print(len(get_ratings()))
