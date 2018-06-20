@@ -6,10 +6,9 @@ def get_ratings():
     html_text = requests.get(
         "https://icobazaar.com/v2/ico-list?order%5Brating%5D=desc&status%5B0%5D=ongoing").text
     soup = BeautifulSoup(html_text, 'html.parser')
-    #n_pages = soup.select('a.js-fiter-page')[-1].text
+    n_pages = int(soup.select('a.js-filter-page')[-2].text)
     ratings = {}
-    #change in prod
-    for i in range(1, 5):
+    for i in range(1, n_pages + 1):
         html_text = requests.get(
             "https://icobazaar.com/v2/ico-list?order%5Brating%5D=desc&status%5B0%5D=ongoing&page={}".format(i)).text
 
