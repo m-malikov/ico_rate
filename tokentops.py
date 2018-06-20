@@ -13,5 +13,7 @@ def get_ratings():
     for item in soup.select('div.upcoming-sec__main a.t_wrap'):
         name = item.select('b')[0].text
         rate = item.select('span.rating-text')[0].text
-        ratings[name] = int(float(rate) * 20)
+        link = item["href"]
+        ratings[name] = {"rate": int(
+            float(rate) * 20), "link": link, "is_preico": False}
     return ratings

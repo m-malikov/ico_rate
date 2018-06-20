@@ -5,8 +5,8 @@ import re
 
 def get_ratings():
     ratings = {}
-    for address in ["/ico", "/ico/preico"]:
-        html_text = requests.get("https://icorating.com" + address).text
+    for address in ["ico", "ico/preico"]:
+        html_text = requests.get("https://icorating.com/" + address).text
 
         soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -29,5 +29,8 @@ def get_ratings():
                     "Default": 10,
                 }
                 rate = grades[rate]
-                ratings[name] = rate
+                link = item["data-href"]
+                is_preico = address == "ico/preico"
+                ratings[name] = {"rate": rate,
+                                 "link": link, "is_preico": is_preico}
     return ratings

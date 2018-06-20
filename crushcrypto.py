@@ -26,5 +26,8 @@ def get_ratings():
                 elif rate == 'Depends':
                     rate += 10
 
-            ratings[name] = rate
+            link = next(item.select('td.column-7')[0].children)['href']
+            print(link)
+
+            ratings[name] = {"rate": rate, "link": link, "is_preico": False}
     return ratings

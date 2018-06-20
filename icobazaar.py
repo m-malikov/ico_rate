@@ -19,10 +19,14 @@ def get_ratings():
             rate_element = item.select('div.ico-eva_class')
             if name_element:
                 name = name_element[0].text
+                is_preico = False
                 suffix = " (Pre-ICO)"
                 if name.endswith(suffix):
                     name = name[:-len(suffix)]
+                    is_preico = True
                 rate = rate_element[0].text
+                if rate == "TBD":
+                    continue
                 grades = {
                     "AAA": 100,
                     "AA": 90,
@@ -34,7 +38,8 @@ def get_ratings():
                     "CC": 30,
                     "C": 20,
                     "D": 0,
-                    "TBD": 0,
                 }
-                ratings[name] = grades[rate]
+                link = item.select("a.ico-link")[0]['href']
+                ratings[name] = {"rate": grades[rate],
+                                 "link": link, "is_preico": is_preico}
     return ratings

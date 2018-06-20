@@ -11,5 +11,8 @@ def get_ratings():
         for item in soup.select('a.my-2'):
             name = item.select('span.fs16b')[0].text
             rate = item.select('p')[0].text
-            ratings[name] = int(float(rate) * 10)
+            is_preico = show == 'PreICO'
+            link = item["href"]
+            ratings[name] = {"rate": int(
+                float(rate) * 10), "link": link, "is_preico": is_preico}
     return ratings

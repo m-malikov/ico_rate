@@ -4,7 +4,7 @@ import requests
 
 def get_ratings():
     ratings = {}
-    for address in ['presale/', 'ongoing/']:
+    for address in ['presale', 'ongoing']:
         html_text = requests.get(
             "https://www.trackico.io/" + address).text
         soup = BeautifulSoup(html_text, 'html.parser')
@@ -21,8 +21,11 @@ def get_ratings():
                 if name_element and rate_element:
                     name = name_element[0].text
                     rate = rate_element[-1].text
+                    link = "https://www.trackio.io" + \
+                        item.select('a')[0]["href"]
                     try:
-                        ratings[name] = int(20*float(rate))
+                        ratings[name] = {"rate": int(
+                            20*float(rate)), "link": link, "is_preico": address == "presale"}
                     except:
                         pass
     return ratings

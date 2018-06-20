@@ -3,12 +3,11 @@ import requests
 
 
 def get_ratings():
-    html_text = requests.get("https://icobench.com/icos").text
+    html_text = requests.get("https://icobench.com/icos?filterBonus=&filterBounty=&filterMvp=&filterTeam=&filterExpert=&filterSort=&filterCategory=all&filterRating=any&filterStatus=ongoing&filterPublished=&filterCountry=any&filterRegistration=0&filterExcludeArea=none&filterPlatform=any&filterCurrency=any&filterTrading=any&s=&filterStartAfter=&filterEndBefore=").text
     soup = BeautifulSoup(html_text, 'html.parser')
-    n_pages = soup.select('.pages a.num')[-2].text
+    n_pages = int(soup.select('a.num')[-1].text)
     ratings = {}
-    #change in prod
-    for i in range(1, 5):
+    for i in range(1, n_pages + 1):
         html_text = requests.get(
             "https://icobench.com/icos?page={}".format(i)).text
 
@@ -19,12 +18,16 @@ def get_ratings():
             rate_element = item.select('div.rate')
             if name_element:
                 name = name_element[0].text
+                is_preico = False
                 suffix = " (PreICO)"
                 if name.endswith(suffix):
+                    is_preico = True
                     name = name[:-len(suffix)]
                 if name.startswith('\xa0'):
                     name = name[1:]
                 rate = rate_element[0].text
                 rate = int(float(rate)*20)
-                ratings[name] = rate
+                link = 'https://icobench.com' + name_element[0]["href"]
+                ratings[name] = {"rate": rate,
+                                 "link": link, "is_preico": is_preico}
     return ratings

@@ -16,6 +16,8 @@ modules = [crushcrypto,
            icobazaar,
            icobench,
            icochamps,
+           icocrunch,
+           icomarks,
            icorating,
            investfuture,
            tokentops,
@@ -27,9 +29,11 @@ for module in modules:
     ratings = module.get_ratings()
     for name, value in ratings.items():
         if not name in icos:
-            icos[name] = []
+            icos[name] = {"link": value["link"],
+                          "is_preico": value["is_preico"], "rates": []}
             print("  ", name)
-        icos[name].append({"name": module.__name__, "value": value})
+        icos[name]["rates"].append(
+            {"name": module.__name__, "value": value["rate"]})
 
 with open("ratings.json", "w") as f:
     f.write(json.dumps(icos))

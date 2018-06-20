@@ -11,6 +11,10 @@ def get_ratings():
             soup = BeautifulSoup(html_text, 'html.parser')
             for item in soup.select('div.icoListItem'):
                 name = item.select('a.icoListItem__title')[0].text
+                link = item.select('a.icoListItem__title')[0]["href"]
+                is_preico = status == "presale_active"
                 rate = item.select('div.icoListItem__rate')[0].text.strip()
-                ratings[name] = int(float(rate) * 10)
+                ratings[name] = {"rate": int(
+                    float(rate) * 10), "link": link, "is_preico": is_preico}
+
     return ratings

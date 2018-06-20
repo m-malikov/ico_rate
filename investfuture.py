@@ -18,8 +18,11 @@ def get_ratings():
                 if len(cols) > 4:
                     name = cols[1].select('a')[0].text
                     name = re.sub(r" \([\w]*\)", "", name)
+                    link = "https://investfuture.ru" + \
+                        cols[1].select('a')[0]["href"]
 
                     rating = float(cols[3].select('span')[0].text)
-                    ratings[name] = rating
+                    ratings[name] = {"rate": rating,
+                                     "link": link, "is_preico": status == "preico"}
 
     return ratings
