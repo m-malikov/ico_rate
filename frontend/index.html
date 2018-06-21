@@ -8,23 +8,68 @@
         crossorigin="anonymous">
     <style>
         #logo {
-            padding-top: 20px;
-            padding-left: 10px;
-            padding-bottom: 30px;
+            padding: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row justify-content-md-center">
+        <div class="row" style="height: 250px">
+            <img src="logo.jpg" id="logo">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <form>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="typeIco" value="ico">
+                            <label class="form-check-label" for="typeIco">
+                                ICO
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="typePreIco" value="preIco">
+                            <label class="form-check-label" for="typePreIco">
+                                Pre-ICO
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="typeAll" value="all" checked>
+                            <label class="form-check-label" for="typeAll">
+                                All
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="minRates">Minimum amount of rates:</label>
+                        <select class="form-control" id="minRates">
+                            <option>1</option>
+                            <option>2</option>
+                            <option selected>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1">
+
+            </div>
             <div class="col-6">
-                <img src="logo.jpg" style="max-height: 250px" id="logo">
+
                 <table id="main_table" class="table">
                     <tr>
                         <th hscope="col">Name</th>
                         <th hscope="col">Avg. Rating</th>
                         <th hscope="col">Number of rates</th>
+                        <th hscope="col">Type</th>
                     </tr>
                 </table>
             </div>
