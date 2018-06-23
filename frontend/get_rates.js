@@ -1,10 +1,10 @@
 "use strict";
 
 $(document).ready(function() {
-  $.get("http://localhost:8000/ratings.json", function(data) {
+  $.get("ratings.json", function(data) {
     data.forEach(ico => {
       ico.avgRate = 0;
-      ico.nRates = ico.rates.length;
+      ico.nRaes = ico.rates.length;
       ico.tooltipText = "";
       ico.rates.forEach(rate => {
         ico.avgRate += rate.number;

@@ -30,5 +30,5 @@ for module in modules:
 
 json_data = json.dumps([icos[name].to_dict() for name in icos])
 print(json_data)
-with open("ratings.json", "w") as f:
+with open("frontend/ratings.json", "w") as f:
     f.write(json_data)
