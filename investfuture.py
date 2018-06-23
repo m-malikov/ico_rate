@@ -2,14 +2,16 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+from ico import Ico, Rate
 
-def get_ratings():
-    ratings = {}
+
+def add_rates(ratings):
+    base_url = "https://investfuture.ru"
     for status in ["preico", "ongoing"]:
         n_pages = 40
         for i in range(1, n_pages):
             html_text = requests.get(
-                "https://investfuture.ru/ico/rating?sort_field=rating&sort_type=asc&page={}&rating=15&cat=&filter_name=&date=&type={}".format(i, status)).text
+                base_url + "/ico/rating?sort_field=rating&sort_type=asc&page={}&rating=15&cat=&filter_name=&date=&type={}".format(i, status)).text
 
             soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -18,11 +20,24 @@ def get_ratings():
                 if len(cols) > 4:
                     name = cols[1].select('a')[0].text
                     name = re.sub(r" \([\w]*\)", "", name)
-                    link = "https://investfuture.ru" + \
+                    logo = item.select('img')[0]['src']
+                    goal = cols[4].text
+                    ico_page_link = "https://investfuture.ru" + \
                         cols[1].select('a')[0]["href"]
+                    ico_page_link = ico_page_link.replace("/rating", "")
+                    ico_page = requests.get(ico_page_link).text
+                    ico_soup = BeautifulSoup(ico_page, "html.parser")
+                    link = None
+                    try:
+                        link = ico_soup.find(
+                            'span', {"data-target": "#ico_red"}).text
+                    except:
+                        pass
 
-                    rating = float(cols[3].select('span')[0].text)
-                    ratings[name] = {"rate": rating,
-                                     "link": link, "is_preico": status == "preico"}
-
-    return ratings
+                    rate = cols[3].select('span')[0].text
+                    if name not in ratings:
+                        ratings[name] = Ico(name)
+                    else:
+                        continue
+                    ratings[name].add_rate(link, logo, goal, None, status == "preico", Rate(
+                        "InvestFuture", rate, float(rate)))

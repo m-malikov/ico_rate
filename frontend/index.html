@@ -7,80 +7,168 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <style>
-        #logo {
+        .logo img {
             padding: 30px;
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: contain;
-            width: 100%;
-            height: 100%;
+            max-width: 150px;
+        }
+
+        .lead {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .rowLogo {
+            height: 30px;
+            margin-bottom: 20px;
+        }
+
+        .logos {
+            margin-bottom: 5em;
+        }
+
+        .ico-logo {
+            max-width: 30px;
+        }
+
+        table.controls tr td {
+            padding-right: 2em;
+            padding-bottom: 0.3em;
+        }
+
+        table.controls {
+            margin-bottom: 2em;
         }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row" style="height: 250px">
-            <img src="logo.jpg" id="logo">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <a href="https://idacb.com/" class="logo">
+                    <img src="logo.jpg">
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="https://fund.idacb.com/" class="logo">
+                    <img src="logo.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <p class="lead">
+                    There are more and more ICOs running at the same time. You can drown in this info. That's why people invented ICO Ratings
+                    where experts are evaluating project for you. IDACB taking it even further. Let's make it simple with
+                    IDACB ICO Aggregator.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 logos">
+                <div class="d-flex justify-content-around flex-wrap">
+                    <a href="https://icobench.com/">
+                        <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
+                    </a>
+                    <a href="https://icorating.com/">
+                        <img class="rowLogo" src="https://icorating.com/svg/logo-icorating.svg" style="background-color: #39f; padding-right: 15px">
+                    </a>
+                    <a href="https://investfuture.ru/">
+                        <img class="rowLogo" src="https://investfuture.ru/images/logo-1-4.png">
+                    </a>
+                    <a href="https://icobazaar.com/">
+                        <img class="rowLogo" src="https://icobazaar.com/client/images/logo.svg">
+                    </a>
+                    <a href="https://www.trackico.io/material/">
+                        <img class="rowLogo" src="https://www.trackico.io/static/img/partner_logo_black.png">
+                    </a>
+                </div>
+                <div class="d-flex justify-content-around flex-wrap">
+                    <a href="https://icomarks.com/">
+                        <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
+                    </a>
+                    <a href="https://icocrunch.io/">
+                        <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
+                    </a>
+                    <a href="https://www.icochamps.com/">
+                        <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
+                    </a>
+                    <a href="https://crushcrypto.com/">
+                        <img class="rowLogo" src="https://crushcrypto.com/wp-content/uploads/2017/08/TransparentLogoCrushCrypto.png">
+                    </a>
+                    <a href="https://tokentops.com/">
+                        <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-2">
-                <form>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="typeIco" value="ico">
-                            <label class="form-check-label" for="typeIco">
-                                ICO
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="typePreIco" value="preIco">
-                            <label class="form-check-label" for="typePreIco">
-                                Pre-ICO
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="typeAll" value="all" checked>
-                            <label class="form-check-label" for="typeAll">
-                                All
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="minRates">Minimum amount of rates:</label>
-                        <select class="form-control" id="minRates">
-                            <option>1</option>
-                            <option>2</option>
-                            <option selected>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                        </select>
-                    </div>
-                </form>
             </div>
-            <div class="col-1">
-
+            <div class="col-10">
+                <table class="controls">
+                    <tr>
+                        <td>
+                            Status:
+                        </td>
+                        <td>
+                            Minimium amount of upvotes:
+                        </td>
+                        <td>
+                            Detailed view:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="status btn btn-light">ICO</button>
+                                <button class="status btn btn-light">Pre-ICO</button>
+                                <button class="status btn btn-light active">All</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="nrates btn btn-light">2</button>
+                                <button class="nrates btn btn-light">3</button>
+                                <button class="nrates btn btn-light active">4</button>
+                                <button class="nrates btn btn-light">5</button>
+                                <button class="nrates btn btn-light">6</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="detailed btn btn-light">On</button>
+                                <button class="detailed btn btn-light active">Off</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="col-6">
-
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
                 <table id="main_table" class="table">
                     <tr>
+                        <th hscope="col"></th>
                         <th hscope="col">Name</th>
                         <th hscope="col">Avg. Rating</th>
                         <th hscope="col">Number of rates</th>
                         <th hscope="col">Type</th>
+                        <th hscope="col">Goal</th>
+                        <th hscope="col">Raised</th>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
-    <script src="get_rates.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
+        crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+        crossorigin="anonymous "></script>
+    <script src="get_rates.js "></script>
 </body>
 
 </html>

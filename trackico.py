@@ -1,17 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 
+from ico import Ico, Rate
 
-def get_ratings():
-    ratings = {}
-    for address in ['presale', 'ongoing']:
-        html_text = requests.get(
-            "https://www.trackico.io/" + address).text
+
+def add_rates(ratings):
+    base_url = "https://www.trackico.io"
+    for address in ['presale/', 'ongoing/']:
+        html_text = requests.get(base_url + "/" + address).text
         soup = BeautifulSoup(html_text, 'html.parser')
         n_pages = int(soup.select('a.page-link')[-2].text)
         for i in range(1, n_pages):
             html_text = requests.get(
-                "https://www.trackico.io/{}{}/".format(address, i)).text
+                "{}/{}{}/".format(base_url, address, i)).text
 
             soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -20,12 +21,18 @@ def get_ratings():
                 rate_element = item.select('small')
                 if name_element and rate_element:
                     name = name_element[0].text
-                    rate = rate_element[-1].text
-                    link = "https://www.trackio.io" + \
-                        item.select('a')[0]["href"]
+                    verbose_rate = rate_element[-1].text
+                    rate = None
                     try:
-                        ratings[name] = {"rate": int(
-                            20*float(rate)), "link": link, "is_preico": address == "presale"}
+                        rate = float(verbose_rate) * 20
                     except:
-                        pass
-    return ratings
+                        continue
+                    logo = base_url + item.select('img')[0]['src']
+                    ico_page_link = base_url + item.select('a')[0]["href"]
+                    ico_page = requests.get(ico_page_link).text
+                    ico_soup = BeautifulSoup(ico_page, 'html.parser')
+                    link = ico_soup.select('a.btn-success')[0]['href']
+                    if name not in ratings:
+                        ratings[name] = Ico(name)
+                    ratings[name].add_rate(link, logo, None, None, address == "presale", Rate(
+                        "Track ICO", verbose_rate, rate))

@@ -2,47 +2,50 @@
 
 $(document).ready(function() {
   $.get("http://localhost:8000/ratings.json", function(data) {
-    var results = [];
-    for (var name in data) {
-      if (data.hasOwnProperty(name)) {
-        var nRates = data[name].rates.length;
-        var avgRate = 0;
-        var tooltipText = "";
-        data[name].rates.forEach(element => {
-          avgRate += element.value;
-          tooltipText += `${element.name}: ${element.value}<br>`;
-        });
+    data.forEach(ico => {
+      ico.avgRate = 0;
+      ico.nRates = ico.rates.length;
+      ico.tooltipText = "";
+      ico.rates.forEach(rate => {
+        ico.avgRate += rate.number;
+        ico.tooltipText += `<strong>${rate.source}</strong>: ${
+          rate.verbose
+        }<br>`;
+      });
+      ico.avgRate = Math.round(ico.avgRate / ico.nRates);
+    });
 
-        avgRate /= nRates;
-        results.push({
-          name: name,
-          avgRate: Math.round(avgRate),
-          nRates: nRates,
-          tooltipText: tooltipText,
-          link: data[name].link,
-          is_preico: data[name].is_preico
-        });
-      }
-    }
-
-    results.sort(function(a, b) {
+    data.sort(function(a, b) {
       return b.avgRate - a.avgRate;
     });
 
     function show() {
       $("tr.ico").remove();
 
-      var minRates = $("#minRates").val();
-      var type = $("input:radio:checked").val();
+      var minRates = $(".nrates.active").text();
+      var type = $(".status.active").text();
+      console.log(minRates, type);
 
-      results.forEach(i => {
+      data.forEach(i => {
         if (
           i.nRates >= minRates &&
-          (type == "all" ||
-            (type == "ico" && i.is_preico == false) ||
-            (type == "preIco" && i.is_preico == true))
+          (type == "All" ||
+            (type == "ICO" && !i.isPre) ||
+            (type == "Pre-ICO" && i.isPre))
         ) {
           var row = document.createElement("tr");
+
+          var cell = document.createElement("td");
+          var link = document.createElement("a");
+          link.href = i.link;
+          if (i.logo) {
+            var img = document.createElement("img");
+            img.setAttribute("src", i.logo);
+            img.classList.add("ico-logo");
+            link.appendChild(img);
+          }
+          cell.appendChild(link);
+          row.appendChild(cell);
 
           var cell = document.createElement("td");
           var link = document.createElement("a");
@@ -75,7 +78,15 @@ $(document).ready(function() {
           row.appendChild(cell);
 
           var cell = document.createElement("td");
-          cell.innerText = i.is_preico ? "Pre-ICO" : "ICO";
+          cell.innerText = i.isPre ? "Pre-ICO" : "ICO";
+          row.appendChild(cell);
+
+          var cell = document.createElement("td");
+          cell.innerText = i.goal;
+          row.appendChild(cell);
+
+          var cell = document.createElement("td");
+          cell.innerText = i.raised;
           row.appendChild(cell);
 
           row.setAttribute("data-toggle", "tooltip");
@@ -86,14 +97,19 @@ $(document).ready(function() {
           $("#main_table").append(row);
         }
       });
-
-      $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-      });
+      $('[data-toggle="tooltip"]').tooltip();
     }
 
+    $("div.btn-group button").click(function(evt) {
+      $(this)
+        .parent()
+        .children()
+        .removeClass("active");
+      $(this).addClass("active");
+      $(".controls").hide();
+      show();
+      $(".controls").show();
+    });
     show();
-    $("#minRates").change(show);
-    $(".form-check").change(show);
   });
 });

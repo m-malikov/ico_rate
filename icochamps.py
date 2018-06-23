@@ -2,12 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+from ico import Ico, Rate
 
-def get_ratings():
-    ratings = {}
+
+def add_rates(ratings):
+    base_url = "https://www.icochamps.com"
     for address in ["ongoing", "pre-ico"]:
         html_text = requests.get(
-            "https://www.icochamps.com/ico/" + address).text
+            base_url + "/ico/" + address).text
         soup = BeautifulSoup(html_text, 'html.parser')
         for item in soup.select('div.ico-row'):
             name = item.select('span.ico_logo')[
@@ -19,10 +21,17 @@ def get_ratings():
             name = name.strip()
 
             rate = item.select('span.rating-nr')[0].text.strip()
-            is_preico = address == "pre-ico"
-            link = item.select('a')[0]['href']
-            print(link)
+            logo = base_url + item.select('img.ico-logo-small')[0]['src']
+            ico_page_link = item.select('a')[0]['href']
+            ico_page = requests.get(ico_page_link).text
+            ico_soup = BeautifulSoup(ico_page, "html.parser")
+            link = None
+            try:
+                link = ico_soup.select('a.website')[0]['href']
+            except:
+                pass
             if rate != "N/A":
-                ratings[name] = {"rate": int(
-                    float(rate) * 10), "link": link, "is_preico": is_preico}
-    return ratings
+                if not name in ratings:
+                    ratings[name] = Ico(name)
+                ratings[name].add_rate(link, logo, None, None, address ==
+                                       "pre-ico", Rate("ICO Champs", rate, int(float(rate)*20)))

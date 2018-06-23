@@ -26,14 +26,9 @@ modules = [crushcrypto,
 icos = {}
 for module in modules:
     print(module.__name__)
-    ratings = module.get_ratings()
-    for name, value in ratings.items():
-        if not name in icos:
-            icos[name] = {"link": value["link"],
-                          "is_preico": value["is_preico"], "rates": []}
-            print("  ", name)
-        icos[name]["rates"].append(
-            {"name": module.__name__, "value": value["rate"]})
+    module.add_rates(icos)
 
+json_data = json.dumps([icos[name].to_dict() for name in icos])
+print(json_data)
 with open("ratings.json", "w") as f:
-    f.write(json.dumps(icos))
+    f.write(json_data)
