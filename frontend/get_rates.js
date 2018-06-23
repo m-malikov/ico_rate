@@ -48,7 +48,6 @@ $(document).ready(function() {
       var type = $(".status.active").text();
 
       data.forEach(i => {
-        console.log(i.nRates);
         if (
           i.nRates >= minRates &&
           (type == "All" ||
@@ -176,6 +175,8 @@ $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
     }
 
+    $("#algo_modal").modal("show");
+
     $("div.btn-group button").click(function() {
       $(this)
         .parent()
@@ -198,6 +199,7 @@ $(document).ready(function() {
         $("#detailed_table").hide();
       }
     });
+
     updateTables();
   });
 });
