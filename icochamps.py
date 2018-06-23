@@ -33,5 +33,7 @@ def add_rates(ratings):
             if rate != "N/A":
                 if not name in ratings:
                     ratings[name] = Ico(name)
+                else:
+                    continue
                 ratings[name].add_rate(link, logo, None, None, address ==
                                        "pre-ico", Rate("ICO Champs", rate, int(float(rate)*20)))

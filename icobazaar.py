@@ -60,4 +60,4 @@ def add_rates(ratings):
                 if name not in ratings:
                     ratings[name] = Ico(name)
                 ratings[name].add_rate(link, logo, goal, None, is_preico, Rate(
-                    "ICO bazaar", rate, grades[rate]))
+                    "ICO Bazaar", rate, grades[rate]))

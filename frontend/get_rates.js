@@ -19,12 +19,30 @@ $(document).ready(function() {
       return b.avgRate - a.avgRate;
     });
 
-    function show() {
+    var sources = [
+      "CrushCrypto",
+      "ICO Bazaar",
+      "ICO Bench",
+      "ICO Champs",
+      "ICO Crunch",
+      "ICO Marks",
+      "ICO Rating",
+      "InvestFuture",
+      "Tokentops",
+      "Track ICO"
+    ];
+
+    sources.forEach(source => {
+      var th = document.createElement("th");
+      th.innerText = source;
+      $("#detailed_header").append(th);
+    });
+
+    function updateTables() {
       $("tr.ico").remove();
 
       var minRates = $(".nrates.active").text();
       var type = $(".status.active").text();
-      console.log(minRates, type);
 
       data.forEach(i => {
         if (
@@ -59,9 +77,9 @@ $(document).ready(function() {
           var classList = ["badge", "badge-pill"];
           if (i.avgRate >= 90) {
             classList.push("badge-success");
-          } else if (i.avgRate >= 75) {
+          } else if (i.avgRate >= 60) {
             classList.push("badge-light");
-          } else if (i.avgRate >= 50) {
+          } else if (i.avgRate >= 40) {
             classList.push("badge-warning");
           } else {
             classList.push("badge-danger");
@@ -95,21 +113,83 @@ $(document).ready(function() {
           row.setAttribute("title", i.tooltipText);
           row.classList.add("ico");
           $("#main_table").append(row);
+
+          var row = document.createElement("tr");
+
+          var cell = document.createElement("td");
+          var link = document.createElement("a");
+          link.href = i.link;
+          if (i.logo) {
+            var img = document.createElement("img");
+            img.setAttribute("src", i.logo);
+            img.classList.add("ico-logo");
+            link.appendChild(img);
+          }
+          cell.appendChild(link);
+          row.appendChild(cell);
+
+          var cell = document.createElement("td");
+          var link = document.createElement("a");
+          link.innerText = i.name;
+          link.href = i.link;
+          cell.appendChild(link);
+          row.appendChild(cell);
+          row.classList.add("ico");
+
+          sources.forEach(source => {
+            var td = document.createElement("td");
+            i.rates.forEach(rate => {
+              if (rate.source == source) {
+                var span = document.createElement("span");
+                var classList = ["badge", "badge-pill"];
+                if (rate.number >= 90) {
+                  classList.push("badge-success");
+                } else if (rate.number >= 60) {
+                  classList.push("badge-light");
+                } else if (rate.number >= 40) {
+                  classList.push("badge-warning");
+                } else {
+                  classList.push("badge-danger");
+                }
+                classList.forEach(c => {
+                  span.classList.add(c);
+                });
+                span.innerText = rate.verbose.trim().replace(",", "\n");
+                td.innerHTML = "";
+                td.appendChild(span);
+              }
+            });
+            row.appendChild(td);
+          });
+
+          $("#detailed_table").append(row);
         }
       });
       $('[data-toggle="tooltip"]').tooltip();
     }
 
-    $("div.btn-group button").click(function(evt) {
+    $("div.btn-group button").click(function() {
       $(this)
         .parent()
         .children()
         .removeClass("active");
       $(this).addClass("active");
-      $(".controls").hide();
-      show();
-      $(".controls").show();
     });
-    show();
+
+    $("button.status, button.nrates").click(function() {
+      updateTables();
+    });
+
+    $("#detailed_table").hide();
+    $("button.detailed").click(function() {
+      if ($(".detailed.active").text() == "On") {
+        $("#main_table").hide();
+        $("#detailed_table").show();
+      } else {
+        $("#main_table").show();
+        $("#detailed_table").hide();
+      }
+    });
+    updateTables();
   });
 });

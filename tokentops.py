@@ -26,4 +26,4 @@ def add_rates(ratings):
         if name not in ratings:
             ratings[name] = Ico(name)
         ratings[name].add_rate(link, logo, None, None, False, Rate(
-            "TOKENTOPS", rate, float(rate) * 20))
+            "Tokentops", rate, float(rate) * 20))
