@@ -4,7 +4,7 @@ $(document).ready(function() {
   $.get("ratings.json", function(data) {
     data.forEach(ico => {
       ico.avgRate = 0;
-      ico.nRaes = ico.rates.length;
+      ico.nRates = ico.rates.length;
       ico.tooltipText = "";
       ico.rates.forEach(rate => {
         ico.avgRate += rate.number;
@@ -13,6 +13,9 @@ $(document).ready(function() {
         }<br>`;
       });
       ico.avgRate = Math.round(ico.avgRate / ico.nRates);
+      ico.avgRate = Math.round(
+        (ico.avgRate * (1 + (ico.nRates - 3) * 0.05)) / 1.2
+      );
     });
 
     data.sort(function(a, b) {
@@ -45,6 +48,7 @@ $(document).ready(function() {
       var type = $(".status.active").text();
 
       data.forEach(i => {
+        console.log(i.nRates);
         if (
           i.nRates >= minRates &&
           (type == "All" ||
@@ -73,8 +77,9 @@ $(document).ready(function() {
           row.appendChild(cell);
 
           var cell = document.createElement("td");
+          var h = document.createElement("h5");
           var span = document.createElement("span");
-          var classList = ["badge", "badge-pill"];
+          var classList = ["badge"];
           if (i.avgRate >= 90) {
             classList.push("badge-success");
           } else if (i.avgRate >= 60) {
@@ -88,7 +93,8 @@ $(document).ready(function() {
             span.classList.add(c);
           });
           span.innerText = i.avgRate;
-          cell.appendChild(span);
+          h.appendChild(span);
+          cell.appendChild(h);
           row.appendChild(cell);
 
           var cell = document.createElement("td");
@@ -140,8 +146,9 @@ $(document).ready(function() {
             var td = document.createElement("td");
             i.rates.forEach(rate => {
               if (rate.source == source) {
+                var h = document.createElement("h5");
                 var span = document.createElement("span");
-                var classList = ["badge", "badge-pill"];
+                var classList = ["badge"];
                 if (rate.number >= 90) {
                   classList.push("badge-success");
                 } else if (rate.number >= 60) {
@@ -156,7 +163,8 @@ $(document).ready(function() {
                 });
                 span.innerText = rate.verbose.trim().replace(",", "\n");
                 td.innerHTML = "";
-                td.appendChild(span);
+                h.appendChild(span);
+                td.appendChild(h);
               }
             });
             row.appendChild(td);
