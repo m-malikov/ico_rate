@@ -175,8 +175,6 @@ $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
     }
 
-    $("#algo_modal").modal("show");
-
     $("div.btn-group button").click(function() {
       $(this)
         .parent()
