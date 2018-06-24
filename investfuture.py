@@ -37,8 +37,5 @@ def add_rates(ratings):
                     rate = cols[3].select('span')[0].text
                     if name not in ratings:
                         ratings[name] = Ico(name)
-                    for i in ratings[name].rates:
-                        if i.source == name:
-                            continue
                     ratings[name].add_rate(link, logo, goal, None, status == "preico", Rate(
                         "InvestFuture", rate, float(rate)))

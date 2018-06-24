@@ -19,6 +19,9 @@ class Ico:
         self.rates = []
 
     def add_rate(self, link, logo, goal, raised, isPre, rate):
+        for i in self.rates:
+            if i.source == rate.source:
+                return
         if self.link is None:
             self.link = link
         if self.logo is None:
