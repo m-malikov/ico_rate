@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
     <style>
         .logo img {
             padding: 30px;
@@ -18,12 +21,13 @@
         }
 
         .rowLogo {
-            height: 30px;
+            height: 20px;
             margin-bottom: 20px;
         }
 
         .logos {
-            margin-bottom: 5em;
+            margin-top: 3em;
+            margin-bottom: 1em;
         }
 
         .ico-logo {
@@ -38,16 +42,43 @@
         table.controls {
             margin-bottom: 2em;
         }
+
+        tr.ico,
+        th {
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .control {
+            display: inline-block;
+            margin-left: 3em;
+            margin-bottom: 1em;
+            margin-top: 2em;
+        }
+
+        #page-header {
+            margin-top: 3em;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="page-header">
             <div class="col-auto">
                 <a href="https://idacb.com/" class="logo">
                     <img src="logo.jpg">
                 </a>
+            </div>
+            <div class="col-6 text-center">
+                <h2>IDACB ICO Aggregator</h2>
+                <p class="lead">
+                    AI calculated from top 10 rating agencies to give you more detailed and sofisticated information about forthcoming ICO projects.
+                    You can easily navigate through the ICO and find something with a possibility to invest.
+                </p>
             </div>
             <div class="col-auto">
                 <a href="https://fund.idacb.com/" class="logo">
@@ -59,13 +90,15 @@
             <div class="col-8">
                 <p class="lead">
                     There are more and more ICOs running at the same time. You can drown in this info. That's why people invented ICO Ratings
-                    where experts are evaluating project for you. IDACB taking it even further. Let's make it simple with
+                    where experts are evaluating project for you. IDACB is taking it even further. Let's make it simple with
                     IDACB ICO Aggregator.
                 </p>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-6 logos">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 logos">
                 <div class="d-flex justify-content-around flex-wrap">
                     <a href="https://icobench.com/">
                         <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
@@ -82,8 +115,6 @@
                     <a href="https://www.trackico.io/material/">
                         <img class="rowLogo" src="https://www.trackico.io/static/img/partner_logo_black.png">
                     </a>
-                </div>
-                <div class="d-flex justify-content-around flex-wrap">
                     <a href="https://icomarks.com/">
                         <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
                     </a>
@@ -100,53 +131,75 @@
                         <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
                     </a>
                 </div>
+                <div class="control">
+                    <div>Type:</div>
+                    <div class="btn-group" role="group">
+                        <button class="status btn btn-light">ICO</button>
+                        <button class="status btn btn-light">Pre-ICO</button>
+                        <button class="status btn btn-light active">All</button>
+                    </div>
+                </div>
+                <div class="control">
+                    <div>
+                        Minimum amount of rates:
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="nrates btn btn-light">1</button>
+                        <button class="nrates btn btn-light">2</button>
+                        <button class="nrates btn btn-light">3</button>
+                        <button class="nrates btn btn-light active">4</button>
+                        <button class="nrates btn btn-light">5</button>
+                        <button class="nrates btn btn-light">6</button>
+                    </div>
+                </div>
+                <div class="control">
+                    <div>
+                        Rating calculation view:
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="detailed btn btn-light">On</button>
+                        <button class="detailed btn btn-light active">Off</button>
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal">IDACB aggregated algorythm formula</button>
+                </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-2">
             </div>
-            <div class="col-10">
-                <table class="controls">
+            <div class="col-8">
+                <table class="table table-hover" id="main_table">
                     <tr>
-                        <td>
-                            Status:
-                        </td>
-                        <td>
-                            Minimum amount of upvotes:
-                        </td>
-                        <td>
-                            Detailed view:
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="status btn btn-light">ICO</button>
-                                <button class="status btn btn-light">Pre-ICO</button>
-                                <button class="status btn btn-light active">All</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="nrates btn btn-light">1</button>
-                                <button class="nrates btn btn-light">2</button>
-                                <button class="nrates btn btn-light">3</button>
-                                <button class="nrates btn btn-light active">4</button>
-                                <button class="nrates btn btn-light">5</button>
-                                <button class="nrates btn btn-light">6</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="detailed btn btn-light">On</button>
-                                <button class="detailed btn btn-light active">Off</button>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal">Rating Algorithms</button>
-                        </td>
+                        <th hscope="col"></th>
+                        <th hscope="col">Name
+                            <span>
+                            </span>
+                        </th>
+                        <th hscope="col">RAS
+                            <span>
+                                <i class="fas fa-sort-down"></i>
+                            </span>
+                        </th>
+                        <th hscope="col">Number of rates
+                            <span>
+                            </span>
+                        </th>
+                        <th hscope="col">Type
+                            <span>
+                            </span>
+                        </th>
+                        <th hscope="col">Goal
+                            <span>
+                            </span>
+                        </th>
+                        <th hscope="col">Raised
+                            <span>
+                            </span>
+                        </th>
+                        <th hscope="col"></th>
                     </tr>
                 </table>
             </div>
@@ -155,58 +208,60 @@
             <div class="col-2">
             </div>
             <div class="col-8">
-                <table id="main_table" class="table">
-                    <tr>
+                <table id="detailed_table" class="table table-hover">
+                    <tr id="detailed_header">
                         <th hscope="col"></th>
-                        <th hscope="col">Name</th>
-                        <th hscope="col">Avg. Rating</th>
-                        <th hscope="col">Number of rates</th>
-                        <th hscope="col">Type</th>
-                        <th hscope="col">Goal</th>
-                        <th hscope="col">Raised</th>
+                        <th hscope="col">Name
+                            <span>
+                            </span>
+                        </th>
                     </tr>
                 </table>
-
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
             </div>
-            <div class="col10">
-                <table id="detailed_table" class="table">
-                    <tr id="detailed_header">
-                        <th hscope="col"></th>
-                        <th hscope="col">Name</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Rating algortihms</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>We aggregate rating from all ten sources and calculate the results based on the popularity and rates
-                        of the ICO.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                </div>
+            <div class="col-6">
+                <small class="text-muted">
+                    <ul>
+                        <li>If it seems to you unfair</li>
+                        <li>If you have any proposals</li>
+                        <li>If you found an error</li>
+                        <li>If you cannot find your ICO</li>
+
+                        Please write us
+                        <a href="mailto:icoaggregator@idacb.com">icoaggregator@idacb.com</a>
+                    </ul>
+                </small>
             </div>
         </div>
+        <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Rating algortihms</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>We aggregate rating from all ten sources and calculate the results based on the popularity and rates
+                            of the ICO.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
+            crossorigin="anonymous "></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+            crossorigin="anonymous "></script>
+        <script src="get_rates.js "></script>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
-        crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
-        crossorigin="anonymous "></script>
-    <script src="get_rates.js "></script>
 </body>
 
 </html>
