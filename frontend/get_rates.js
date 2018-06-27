@@ -52,11 +52,17 @@ $(document).ready(function() {
     $("#detailed_header").append(th);
 
     function drawMainTable(filteredData) {
+      let num = 1;
       filteredData.forEach(i => {
         var row = document.createElement("tr");
         row.addEventListener("click", function() {
           document.location = i.link;
         });
+
+        var cell = document.createElement("td");
+        cell.innerText = num;
+        row.appendChild(cell);
+        num += 1;
 
         var cell = document.createElement("td");
         var link = document.createElement("a");
@@ -72,6 +78,18 @@ $(document).ready(function() {
 
         var cell = document.createElement("td");
         cell.innerText = i.name;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerText = i.raised;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerText = i.goal;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerText = i.isPre ? "Pre-ICO" : "ICO";
         row.appendChild(cell);
 
         var cell = document.createElement("td");
@@ -100,18 +118,6 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerText = i.isPre ? "Pre-ICO" : "ICO";
-        row.appendChild(cell);
-
-        var cell = document.createElement("td");
-        cell.innerText = i.goal;
-        row.appendChild(cell);
-
-        var cell = document.createElement("td");
-        cell.innerText = i.raised;
-        row.appendChild(cell);
-
-        var cell = document.createElement("td");
         cell.innerHTML = "<button class='btn btn-warning'>Invest</button";
         row.appendChild(cell);
 
@@ -126,11 +132,17 @@ $(document).ready(function() {
     }
 
     function drawDetailedTable(filteredData) {
+      var num = 1;
       filteredData.forEach(i => {
         var row = document.createElement("tr");
         row.addEventListener("click", function() {
           document.location = i.link;
         });
+
+        var cell = document.createElement("td");
+        cell.innerText = num;
+        row.appendChild(cell);
+        num += 1;
 
         var cell = document.createElement("td");
         if (i.logo) {
