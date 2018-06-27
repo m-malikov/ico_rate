@@ -40,9 +40,9 @@ class Ico:
             elif goal.endswith("BTC"):
                 goal = float(goal[:-3])
             elif goal.startswith("$"):
-                goal = float(goal[1:])
+                goal = float(goal[1:]) * usd_to_btc
             elif goal.startswith("ETH"):
-                goal = float(goal[3:])
+                goal = float(goal[3:]) * eth_to_btc
             print(goal)
         if raised is not None:
             if raised.count('.') > 1:
@@ -60,9 +60,9 @@ class Ico:
             elif raised.endswith("BTC"):
                 raised = float(raised[:-3])
             elif raised.startswith("$"):
-                raised = float(raised[1:])
+                raised = float(raised[1:]) * usd_to_btc
             elif raised.startswith("ETH"):
-                raised = float(raised[3:])
+                raised = float(raised[3:]) * eth_to_btc
             print(raised)
 
         for i in self.rates:
