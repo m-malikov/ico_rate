@@ -62,6 +62,11 @@
         #page-header {
             margin-top: 3em;
         }
+
+        #formula {
+            max-height: 25%;
+            display: block;
+        }
     </style>
 </head>
 
@@ -246,11 +251,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>We aggregate rating from all ten sources and calculate the results based on the popularity and rates
-                            of the ICO.</p>
+                        We use the following rating to estimate ICO value:
+                        <img src="formula.jpg" id="formula"> Where
+                        <i>k</i> is the total number of rates, and
+                        <i>a
+                            <sub>i</sub>
+                        </i> are rates normalized to a 0-100 scale.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>
