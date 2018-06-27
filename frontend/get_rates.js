@@ -177,7 +177,11 @@ $(document).ready(function() {
               classList.forEach(c => {
                 span.classList.add(c);
               });
-              span.innerText = rate.verbose.trim().replace(",", "\n");
+              span.innerText = rate.verbose
+                .trim()
+                .replace(", ", "\n")
+                .replace(":", "\n")
+                .replace(":", "\n");
               td.innerHTML = "";
               h.appendChild(span);
               td.appendChild(h);
@@ -264,9 +268,9 @@ $(document).ready(function() {
           } else if (columnName == "Type") {
             res = a.isPre - b.isPre;
           } else if (columnName == "Goal") {
-            res = strcmp(a.goal, b.goal);
+            res = strcmp(a.goal.trim(), b.goal.trim());
           } else if (columnName == "Raised") {
-            res = strcmp(a.raised, b.raised);
+            res = strcmp(a.raised.trim(), b.raised.trim());
           }
           return res * reverse;
         }
