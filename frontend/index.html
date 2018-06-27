@@ -54,7 +54,7 @@
 
         .control {
             display: inline-block;
-            margin-left: 3em;
+            margin-left: 1em;
             margin-bottom: 1em;
             margin-top: 2em;
         }
@@ -167,7 +167,20 @@
                     </div>
                 </div>
                 <div class="control">
-                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal">IDACB aggregated algorythm formula</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal">RAS formula</button>
+                </div>
+                <div class="control">
+                    <small class="text-muted">
+                        <ul>
+                            <li>If it seems to you unfair</li>
+                            <li>If you have any proposals</li>
+                            <li>If you found an error</li>
+                            <li>If you cannot find your ICO</li>
+
+                            Please write us
+                            <a href="mailto:icoaggregator@idacb.com">icoaggregator@idacb.com</a>
+                        </ul>
+                    </small>
                 </div>
             </div>
         </div>
@@ -196,14 +209,13 @@
                             <span>
                             </span>
                         </th>
-
-                        <th hscope="col">RAS
-                            <span>
-                                <i class="fas fa-sort-down"></i>
-                            </span>
-                        </th>
                         <th hscope="col">Number of rates
                             <span>
+                            </span>
+                        </th>
+                        <th hscope="col" data-toggle="tooltip" data-placement="top" title="Rating Aggregated Score">RAS
+                            <span>
+                                <i class="fas fa-sort-down"></i>
                             </span>
                         </th>
                         <th hscope="col"></th>
@@ -212,9 +224,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
+            <div class="col-1">
             </div>
-            <div class="col-8">
+            <div class="col-10">
                 <table id="detailed_table" class="table table-hover">
                     <tr id="detailed_header">
                         <th hscope="col"></th>
@@ -226,31 +238,19 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-2">
-            </div>
         </div>
         <div class="row">
             <div class="col-2">
             </div>
             <div class="col-6">
-                <small class="text-muted">
-                    <ul>
-                        <li>If it seems to you unfair</li>
-                        <li>If you have any proposals</li>
-                        <li>If you found an error</li>
-                        <li>If you cannot find your ICO</li>
 
-                        Please write us
-                        <a href="mailto:icoaggregator@idacb.com">icoaggregator@idacb.com</a>
-                    </ul>
-                </small>
             </div>
         </div>
         <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Rating algortihms</h5>
+                        <h5 class="modal-title">RAS algortihms</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

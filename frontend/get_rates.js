@@ -23,6 +23,9 @@ $(document).ready(function() {
       return b.avgRate - a.avgRate;
     });
 
+    var greenLevel = { avg: data[50].avgRate };
+    var yelowLevel = { avg: data[10].avgRate };
+
     var sources = [
       "ICO Bench",
       "ICO Rating",
@@ -37,6 +40,35 @@ $(document).ready(function() {
     ];
 
     sources.forEach(source => {
+      data.sort(function(a, b) {
+        let aRate = -101;
+        a.rates.forEach(rate => {
+          if (rate.source == source) {
+            aRate = rate.number;
+          }
+        });
+        let bRate = -101;
+        b.rates.forEach(rate => {
+          if (rate.source == source) {
+            bRate = rate.number;
+          }
+        });
+        return bRate - aRate;
+      });
+
+      data[10].rates.forEach(rate => {
+        if (rate.source == source) {
+          yelowLevel[source] = rate.number;
+        }
+      });
+      data[50].rates.forEach(rate => {
+        if (rate.source == source) {
+          greenLevel[source] = rate.number;
+        }
+      });
+    });
+
+    sources.forEach(source => {
       var th = document.createElement("th");
       th.innerText = source;
       var span = document.createElement("span");
@@ -45,7 +77,7 @@ $(document).ready(function() {
     });
 
     var th = document.createElement("th");
-    th.innerText = "RAS";
+    th.innerHTML = "RAS <span> <i class='fas fa-sort-down'></i> </span";
     $("#detailed_header").append(th);
 
     var th = document.createElement("th");
@@ -81,11 +113,11 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerText = i.raised;
+        cell.innerText = i.goal ? Math.round(i.goal) + " BTC" : "";
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerText = i.goal;
+        cell.innerText = i.raised ? Math.round(i.raised) + " BTC" : "";
         row.appendChild(cell);
 
         var cell = document.createElement("td");
@@ -93,17 +125,19 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
+        cell.innerText = i.nRates;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
         var h = document.createElement("h5");
         var span = document.createElement("span");
         var classList = ["badge"];
-        if (i.avgRate >= 90) {
-          classList.push("badge-success");
-        } else if (i.avgRate >= 60) {
-          classList.push("badge-light");
-        } else if (i.avgRate >= 40) {
+        if (i.avgRate >= yelowLevel.avg) {
           classList.push("badge-warning");
+        } else if (i.avgRate >= greenLevel.avg) {
+          classList.push("badge-success");
         } else {
-          classList.push("badge-danger");
+          classList.push("badge-light");
         }
         classList.forEach(c => {
           span.classList.add(c);
@@ -114,11 +148,19 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerText = i.nRates;
-        row.appendChild(cell);
-
-        var cell = document.createElement("td");
-        cell.innerHTML = "<button class='btn btn-warning'>Invest</button";
+        var b = document.createElement("button");
+        b.classList.add("btn");
+        b.classList.add("btn-warning");
+        b.innerText = "Invest";
+        b.addEventListener("click", function(event, arg) {
+          event.stopPropagation();
+          var win = window.open(
+            "https://docs.google.com/forms/d/e/1FAIpQLScCG76ZsYTNWvrjyGDym1Qu7lW1YVaea-Ui3HxLdkTJzNYhog/viewform",
+            "_blank"
+          );
+          win.focus();
+        });
+        cell.appendChild(b);
         row.appendChild(cell);
 
         row.setAttribute("data-toggle", "tooltip");
@@ -165,14 +207,12 @@ $(document).ready(function() {
               var h = document.createElement("h5");
               var span = document.createElement("span");
               var classList = ["badge"];
-              if (rate.number >= 90) {
-                classList.push("badge-success");
-              } else if (rate.number >= 60) {
-                classList.push("badge-light");
-              } else if (rate.number >= 40) {
+              if (rate.number >= yelowLevel[source]) {
                 classList.push("badge-warning");
+              } else if (rate.number >= greenLevel[source]) {
+                classList.push("badge-success");
               } else {
-                classList.push("badge-danger");
+                classList.push("badge-light");
               }
               classList.forEach(c => {
                 span.classList.add(c);
@@ -194,14 +234,12 @@ $(document).ready(function() {
         var h = document.createElement("h5");
         var span = document.createElement("span");
         var classList = ["badge"];
-        if (i.avgRate >= 90) {
-          classList.push("badge-success");
-        } else if (i.avgRate >= 60) {
-          classList.push("badge-light");
-        } else if (i.avgRate >= 40) {
+        if (i.avgRate >= yelowLevel.avg) {
           classList.push("badge-warning");
+        } else if (i.avgRate >= greenLevel.avg) {
+          classList.push("badge-success");
         } else {
-          classList.push("badge-danger");
+          classList.push("badge-light");
         }
         classList.forEach(c => {
           span.classList.add(c);
@@ -212,7 +250,20 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerHTML = "<button class='btn btn-warning'>Invest</button";
+        var b = document.createElement("button");
+        b.classList.add("btn");
+        b.classList.add("btn-warning");
+        b.innerText = "Invest";
+        b.addEventListener("click", function(event, arg) {
+          event.stopPropagation();
+          var win = window.open(
+            "https://docs.google.com/forms/d/e/1FAIpQLScCG76ZsYTNWvrjyGDym1Qu7lW1YVaea-Ui3HxLdkTJzNYhog/viewform",
+            "_blank"
+          );
+          win.focus();
+        });
+        cell.appendChild(b);
+
         row.appendChild(cell);
 
         $("#detailed_table").append(row);
@@ -235,8 +286,6 @@ $(document).ready(function() {
         .hasClass("fa-sort-up")
         ? -1
         : 1;
-
-      console.log(columnName, reverse);
 
       function strcmp(s1, s2) {
         return s1 < s2 ? -1 : +(s1 > s2);
@@ -268,9 +317,13 @@ $(document).ready(function() {
           } else if (columnName == "Type") {
             res = a.isPre - b.isPre;
           } else if (columnName == "Goal") {
-            res = strcmp(a.goal.trim(), b.goal.trim());
+            let aRes = a.goal ? a.goal : -Infinity * reverse;
+            let bRes = b.goal ? b.goal : -Infinity * reverse;
+            res = bRes - aRes;
           } else if (columnName == "Raised") {
-            res = strcmp(a.raised.trim(), b.raised.trim());
+            let aRes = a.raised ? a.raised : -Infinity * reverse;
+            let bRes = b.raised ? b.raised : -Infinity * reverse;
+            res = bRes - aRes;
           }
           return res * reverse;
         }
