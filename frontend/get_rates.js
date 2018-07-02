@@ -77,7 +77,8 @@ $(document).ready(function() {
     });
 
     var th = document.createElement("th");
-    th.innerHTML = "RAS <span> <i class='fas fa-sort-down'></i> </span";
+    th.innerHTML =
+      "<b data-toggle='tooltip' data-placement='right' title='Rating Aggregated Score'>RAS</b> <span> <i class='fas fa-sort-down'></i> </span";
     $("#detailed_header").append(th);
 
     var th = document.createElement("th");
