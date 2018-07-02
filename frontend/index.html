@@ -73,6 +73,10 @@
             border-bottom: none;
             background-color: #FFF;
         }
+
+        .tooltip {
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -220,7 +224,8 @@
                                 <span>
                                 </span>
                             </th>
-                            <th hscope="col" data-toggle="tooltip" data-placement="top" title="Rating Aggregated Score">RAS
+                            <th hscope="col">
+                                <b data-toggle="tooltip" data-placement="right" title="Rating Aggregated Score">RAS</b>
                                 <span>
                                     <i class="fas fa-sort-down"></i>
                                 </span>
