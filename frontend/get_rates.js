@@ -168,7 +168,7 @@ $(document).ready(function() {
         row.setAttribute("data-html", "true");
         row.setAttribute("title", i.tooltipText);
         row.classList.add("ico");
-        $("#main_table").append(row);
+        $("#main_body").append(row);
       });
       $('[data-toggle="tooltip"]').tooltip();
     }
@@ -266,7 +266,7 @@ $(document).ready(function() {
 
         row.appendChild(cell);
 
-        $("#detailed_table").append(row);
+        $("#detailed_body").append(row);
       });
     }
 
@@ -352,14 +352,18 @@ $(document).ready(function() {
 
       let sortedData = sortRows(filteredData);
 
+      drawDetailedTable(sortedData);
+      drawMainTable(sortedData);
       if ($(".detailed.active").text() == "On") {
         $("#main_table").hide();
         $("#detailed_table").show();
-        drawDetailedTable(sortedData);
+        $("#main_table").floatThead("destroy");
+        $("#detailed_table").floatThead();
       } else {
         $("#main_table").show();
         $("#detailed_table").hide();
-        drawMainTable(sortedData);
+        $("#detailed_table").floatThead("destroy");
+        $("#main_table").floatThead();
       }
     }
 
@@ -371,8 +375,6 @@ $(document).ready(function() {
       $(this).addClass("active");
       updateTables();
     });
-
-    $("#detailed_table").hide();
 
     $("th").click(function() {
       if (!$(this).text()) return;
@@ -397,5 +399,6 @@ $(document).ready(function() {
       updateTables();
     });
     updateTables();
+    //$("#detailed_table").hide();
   });
 });

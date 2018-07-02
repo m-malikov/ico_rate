@@ -67,6 +67,12 @@
             max-height: 25%;
             display: block;
         }
+
+        thead {
+            border-top: none;
+            border-bottom: none;
+            background-color: #FFF;
+        }
     </style>
 </head>
 
@@ -190,36 +196,40 @@
             </div>
             <div class="col-8">
                 <table class="table table-hover" id="main_table">
-                    <tr>
-                        <th></th>
-                        <th hscope="col"></th>
-                        <th hscope="col">Name
-                            <span>
-                            </span>
-                        </th>
-                        <th hscope="col">Goal
-                            <span>
-                            </span>
-                        </th>
-                        <th hscope="col">Raised
-                            <span>
-                            </span>
-                        </th>
-                        <th hscope="col">Type
-                            <span>
-                            </span>
-                        </th>
-                        <th hscope="col">Number of rates
-                            <span>
-                            </span>
-                        </th>
-                        <th hscope="col" data-toggle="tooltip" data-placement="top" title="Rating Aggregated Score">RAS
-                            <span>
-                                <i class="fas fa-sort-down"></i>
-                            </span>
-                        </th>
-                        <th hscope="col"></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th hscope="col"></th>
+                            <th hscope="col">Name
+                                <span>
+                                </span>
+                            </th>
+                            <th hscope="col">Goal
+                                <span>
+                                </span>
+                            </th>
+                            <th hscope="col">Raised
+                                <span>
+                                </span>
+                            </th>
+                            <th hscope="col">Type
+                                <span>
+                                </span>
+                            </th>
+                            <th hscope="col">Number of rates
+                                <span>
+                                </span>
+                            </th>
+                            <th hscope="col" data-toggle="tooltip" data-placement="top" title="Rating Aggregated Score">RAS
+                                <span>
+                                    <i class="fas fa-sort-down"></i>
+                                </span>
+                            </th>
+                            <th hscope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="main_body">
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -228,14 +238,19 @@
             </div>
             <div class="col-10">
                 <table id="detailed_table" class="table table-hover">
-                    <tr id="detailed_header">
-                        <th hscope="col"></th>
-                        <th hscope="col"></th>
-                        <th hscope="col">Name
-                            <span>
-                            </span>
-                        </th>
-                    </tr>
+                    <thead>
+                        <tr id="detailed_header">
+                            <th hscope="col"></th>
+                            <th hscope="col"></th>
+                            <th hscope="col">Name
+                                <span>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailed_body">
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -274,6 +289,7 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.1.2/jquery.floatThead.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
             crossorigin="anonymous "></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
@@ -282,4 +298,4 @@
     </div>
 </body>
 
-</html>
+</html>http://icoaggregator.idacb.com/ratings.json
