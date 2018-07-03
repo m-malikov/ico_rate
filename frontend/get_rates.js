@@ -77,8 +77,10 @@ $(document).ready(function() {
     });
 
     var th = document.createElement("th");
-    th.innerHTML =
-      "<b data-toggle='tooltip' data-placement='right' title='Rating Aggregated Score'>RAS</b> <span> <i class='fas fa-sort-down'></i> </span";
+    th.setAttribute("data-toggle", "tooltip");
+    th.setAttribute("data-placement", "right");
+    th.setAttribute("title", "Rating Aggregated Score");
+    th.innerHTML = "RAS <span> <i class='fas fa-sort-down'></i> </span";
     $("#detailed_header").append(th);
 
     var th = document.createElement("th");
@@ -274,8 +276,8 @@ $(document).ready(function() {
     function sortRows(filteredData) {
       let activeTableId =
         $(".detailed.active").text() == "On"
-          ? "#detailed_table"
-          : "#main_table";
+          ? "#detailed_header"
+          : "#main_header";
       let columnName = $(activeTableId)
         .find(".fas")
         .parent()
@@ -288,6 +290,7 @@ $(document).ready(function() {
         ? -1
         : 1;
 
+      console.log($(activeTableId).find(".fas"));
       function strcmp(s1, s2) {
         return s1 < s2 ? -1 : +(s1 > s2);
       }
