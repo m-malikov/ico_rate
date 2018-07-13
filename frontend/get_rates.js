@@ -343,12 +343,20 @@ $(document).ready(function() {
       var type = $(".status.active").text();
 
       let filteredData = [];
+      var searchString = $("#search")
+        .val()
+        .toLowerCase();
+      if (!$("#search").val()) {
+        $("#clear").hide();
+      }
+      console.log(searchString);
       data.forEach(i => {
         if (
           i.nRates >= minRates &&
           (type == "All" ||
             (type == "ICO" && !i.isPre) ||
-            (type == "Pre-ICO" && i.isPre))
+            (type == "Pre-ICO" && i.isPre)) &&
+          (!searchString || i.name.toLowerCase().indexOf(searchString) !== -1)
         ) {
           filteredData.push(i);
         }
@@ -402,6 +410,22 @@ $(document).ready(function() {
         );
       updateTables();
     });
+
+    $("#search").keyup(function() {
+      if ($("#search").val()) {
+        $("#clear").show();
+      }
+      updateTables();
+    });
+    $("#clear").click(function() {
+      $("#search").val("");
+      updateTables();
+    });
+    $("#topButton").click(function() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+
     updateTables();
     //$("#detailed_table").hide();
   });

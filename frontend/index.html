@@ -77,10 +77,19 @@
         .tooltip {
             pointer-events: none;
         }
+
+        #topButton {
+            /*display: none;*/
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 99;
+        }
     </style>
 </head>
 
 <body>
+    <button id="topButton" class="btn btn-light">Go to top</button>
     <div class="container-fluid">
         <div class="row justify-content-center" id="page-header">
             <div class="col-auto">
@@ -177,7 +186,8 @@
                     </div>
                 </div>
                 <div class="control">
-                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal">RAS formula</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
+                        title="-top-10<br>-top-50">RAS formula</button>
                 </div>
                 <div class="control">
                     <small class="text-muted">
@@ -191,6 +201,14 @@
                             <a href="mailto:icoaggregator@idacb.com">icoaggregator@idacb.com</a>
                         </ul>
                     </small>
+                </div>
+                <div class="control">
+                    <div class="input-group">
+                        <input class="form-control" id="search" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -303,4 +321,4 @@
     </div>
 </body>
 
-</html>http://icoaggregator.idacb.com/ratings.json
+</html>
