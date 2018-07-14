@@ -21,7 +21,8 @@ modules = [crushcrypto,
            icorating,
            investfuture,
            tokentops,
-           trackico]
+           # trackico
+           ]
 
 icos = {}
 for module in modules:
