@@ -12,17 +12,17 @@ import trackico
 from pprint import pprint
 import json
 
-modules = [crushcrypto,
-           icobazaar,
-           icobench,
-           icochamps,
-           icocrunch,
-           icomarks,
-           icorating,
-           investfuture,
-           tokentops,
-           # trackico
-           ]
+modules = [
+    crushcrypto,
+    icobazaar,
+    icobench,
+    icochamps,
+    icocrunch,
+    icomarks,
+    icorating,
+    investfuture,
+    tokentops,
+    trackico]
 
 icos = {}
 for module in modules:

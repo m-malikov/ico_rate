@@ -45,7 +45,7 @@ def add_rates(ratings):
                 ico_page = requests.get(ico_page_link).text
                 ico_soup = BeautifulSoup(ico_page, "html.parser")
                 link = ico_soup.find(
-                    'span', text=" Website").parent.get('href')
+                    'a', text=re.compile(r"Website")).get('href')
                 if name not in ratings:
                     ratings[name] = Ico(name)
                 ratings[name].add_rate(
