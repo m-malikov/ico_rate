@@ -73,7 +73,14 @@ $(document).ready(function() {
       th.innerText = source;
       var span = document.createElement("span");
       th.appendChild(span);
-      $("#detailed_header").append(th);
+      $("#detailed_header")
+        .children()
+        .first()
+        .append(th);
+      $("#detailed_header1")
+        .children()
+        .first()
+        .append($(th).clone());
     });
 
     var th = document.createElement("th");
@@ -81,10 +88,24 @@ $(document).ready(function() {
     th.setAttribute("data-placement", "right");
     th.setAttribute("title", "Rating Aggregated Score");
     th.innerHTML = "RAS <span> <i class='fas fa-sort-down'></i> </span";
-    $("#detailed_header").append(th);
+    $("#detailed_header")
+      .children()
+      .first()
+      .append(th);
+    $("#detailed_header1")
+      .children()
+      .first()
+      .append($(th).clone());
 
     var th = document.createElement("th");
-    $("#detailed_header").append(th);
+    $("#detailed_header")
+      .children()
+      .first()
+      .append(th);
+    $("#detailed_header1")
+      .children()
+      .first()
+      .append($(th).clone());
 
     function drawMainTable(filteredData) {
       let num = 1;
@@ -172,7 +193,9 @@ $(document).ready(function() {
         row.setAttribute("title", i.tooltipText);
         row.classList.add("ico");
         $("#main_body").append(row);
+        $("#main_body1").append($(row).clone());
       });
+      $("#main_body1").css("visibility", "hidden");
       $('[data-toggle="tooltip"]').tooltip();
     }
 
@@ -270,7 +293,9 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         $("#detailed_body").append(row);
+        $("#detailed_body1").append($(row).clone());
       });
+      $("#detailed_body1").css("visibility", "hidden");
     }
 
     function sortRows(filteredData) {
@@ -368,14 +393,18 @@ $(document).ready(function() {
       drawMainTable(sortedData);
       if ($(".detailed.active").text() == "On") {
         $("#main_table").hide();
+        $("#main_table1").hide();
         $("#detailed_table").show();
-        $("#main_table").floatThead("destroy");
-        $("#detailed_table").floatThead();
+        $("#detailed_table1").show();
+        //$("#main_table").floatThead("destroy");
+        //$("#detailed_table").floatThead();
       } else {
         $("#main_table").show();
+        $("#main_table1").show();
         $("#detailed_table").hide();
-        $("#detailed_table").floatThead("destroy");
-        $("#main_table").floatThead();
+        $("#detailed_table1").hide();
+        //$("#detailed_table").floatThead("destroy");
+        //$("#main_table").floatThead();
       }
     }
 
@@ -427,6 +456,17 @@ $(document).ready(function() {
     });
 
     updateTables();
+    $(window)
+      .resize(function() {
+        $(document.body).css(
+          "margin-top",
+          $("#page-header").height() -
+            $("#main_body1").height() -
+            $("#detailed_body1").height() -
+            50
+        );
+      })
+      .resize();
     //$("#detailed_table").hide();
   });
 });
