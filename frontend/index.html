@@ -71,7 +71,11 @@
         }
 
         #page-header {
-            margin-top: 3em;
+            position: fixed;
+            /*background-color: #FFF;*/
+            width: 100%;
+            top: 0;
+            z-index: 99;
         }
 
         #formula {
@@ -96,128 +100,184 @@
             left: 10px;
             z-index: 99;
         }
+
+        #page-title {
+            margin-bottom: 1em;
+        }
     </style>
 </head>
 
 <body class="mobile-style">
     <button id="topButton" class="btn btn-light">Go up</button>
     <div class="container-fluid">
-        <div class="row justify-content-center" id="page-header">
-            <div class="col-lg-auto">
-                <a href="https://idacb.com/" class="logo">
-                    <img src="logo.jpg">
-                </a>
-            </div>
-            <div class="col-lg-6 text-center">
-                <h2>IDACB ICO Aggregator</h2>
-                <p class="lead">
-                    Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
-                    transparent AI calculation. Invest drop will be allowed with bonuses right from here.
-                </p>
-            </div>
-            <div class="col-lg-auto">
-                <a href="https://fund.idacb.com/" class="logo">
-                    <img src="fund.jpg">
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2 d-none d-lg-block">
-            </div>
-            <div class="col-lg-8 logos">
-                <div class="d-flex justify-content-around flex-wrap">
-                    <a href="https://icobench.com/">
-                        <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
-                    </a>
-                    <a href="https://icorating.com/">
-                        <img class="rowLogo" src="https://icorating.com/svg/logo-icorating.svg" style="background-color: #39f; padding-right: 15px">
-                    </a>
-                    <a href="https://investfuture.ru/">
-                        <img class="rowLogo" src="https://investfuture.ru/images/logo-1-4.png">
-                    </a>
-                    <a href="https://icobazaar.com/">
-                        <img class="rowLogo" src="https://icobazaar.com/client/images/logo.svg">
-                    </a>
-                    <a href="https://www.trackico.io/">
-                        <img class="rowLogo" src="TrackICO.png">
-                    </a>
-                    <a href="https://icomarks.com/">
-                        <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
-                    </a>
-                    <a href="https://icocrunch.io/">
-                        <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
-                    </a>
-                    <a href="https://www.icochamps.com/">
-                        <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
-                    </a>
-                    <a href="https://crushcrypto.com/">
-                        <img class="rowLogo" src="CrushCrypto.png">
-                    </a>
-                    <a href="https://tokentops.com/">
-                        <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2 d-none d-lg-block">
-            </div>
-            <div class="col-8">
-                <div class="control">
-                    <div>Type:</div>
-                    <div class="btn-group" role="group">
-                        <button class="status btn btn-light">ICO</button>
-                        <button class="status btn btn-light">Pre-ICO</button>
-                        <button class="status btn btn-light active">All</button>
+        <div id="page-header">
+            <div class="container-fluid">
+                <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
+                    <div class="col-lg-auto">
+                        <a href="https://idacb.com/" class="logo">
+                            <img src="logo.jpg">
+                        </a>
                     </div>
-                </div>
-                <div class="control">
-                    <div>
-                        Minimum amount of rates:
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button class="nrates btn btn-light">1</button>
-                        <button class="nrates btn btn-light">2</button>
-                        <button class="nrates btn btn-light">3</button>
-                        <button class="nrates btn btn-light active">4</button>
-                        <button class="nrates btn btn-light">5</button>
-                        <button class="nrates btn btn-light">6</button>
-                        <button class="nrates btn btn-light">7</button>
-                        <button class="nrates btn btn-light">8</button>
-                        <button class="nrates btn btn-light">9</button>
-                        <button class="nrates btn btn-light">10</button>
-                    </div>
-                </div>
-                <div class="control">
-                    <div>
-                        Rating calculation view:
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button class="detailed btn btn-light">On</button>
-                        <button class="detailed btn btn-light active">Off</button>
-                    </div>
-                </div>
-                <div class="control">
-                    <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
-                        title="-top-10<br>-top-50">RAS formula</button>
-                </div>
-                <div class="control">
-                    <div class="input-group">
-                        <input class="form-control" id="search" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                    <div class="col-lg-6 text-center">
+                        <h2 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
+                transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h2>
+                        <div class="d-flex justify-content-around flex-wrap">
+                            <a href="https://icobench.com/">
+                                <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
+                            </a>
+                            <a href="https://icorating.com/">
+                                <img class="rowLogo" src="https://icorating.com/svg/logo-icorating.svg" style="background-color: #39f; padding-right: 15px">
+                            </a>
+                            <a href="https://investfuture.ru/">
+                                <img class="rowLogo" src="https://investfuture.ru/images/logo-1-4.png">
+                            </a>
+                            <a href="https://icobazaar.com/">
+                                <img class="rowLogo" src="https://icobazaar.com/client/images/logo.svg">
+                            </a>
+                            <a href="https://www.trackico.io/">
+                                <img class="rowLogo" src="TrackICO.png">
+                            </a>
+                            <a href="https://icomarks.com/">
+                                <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
+                            </a>
+                            <a href="https://icocrunch.io/">
+                                <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
+                            </a>
+                            <a href="https://www.icochamps.com/">
+                                <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
+                            </a>
+                            <a href="https://crushcrypto.com/">
+                                <img class="rowLogo" src="CrushCrypto.png">
+                            </a>
+                            <a href="https://tokentops.com/">
+                                <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
+                            </a>
                         </div>
+                        <div class="control">
+                            <div>Type:</div>
+                            <div class="btn-group" role="group">
+                                <button class="status btn btn-light">ICO</button>
+                                <button class="status btn btn-light">Pre-ICO</button>
+                                <button class="status btn btn-light active">All</button>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <div>
+                                Minimum amount of rates:
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="nrates btn btn-light">1</button>
+                                <button class="nrates btn btn-light">2</button>
+                                <button class="nrates btn btn-light">3</button>
+                                <button class="nrates btn btn-light active">4</button>
+                                <button class="nrates btn btn-light">5</button>
+                                <button class="nrates btn btn-light">6</button>
+                                <button class="nrates btn btn-light">7</button>
+                                <button class="nrates btn btn-light">8</button>
+                                <button class="nrates btn btn-light">9</button>
+                                <button class="nrates btn btn-light">10</button>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <div>
+                                Rating calculation view:
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="detailed btn btn-light">On</button>
+                                <button class="detailed btn btn-light active">Off</button>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
+                                title="-top-10<br>-top-50">RAS formula</button>
+                        </div>
+                        <div class="control">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-auto">
+                        <a href="https://idacb.com/" class="logo">
+                            <img src="fund.jpg">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 d-none d-lg-block">
+                    </div>
+                    <div class="col-lg-8">
+                        <table class="table table-hover" id="main_table1">
+                            <thead id="main_header">
+                                <tr>
+                                    <th></th>
+                                    <th hscope="col"></th>
+                                    <th hscope="col">Name
+                                        <span>
+                                        </span>
+                                    </th>
+                                    <th hscope="col">Goal
+                                        <span>
+                                        </span>
+                                    </th>
+                                    <th hscope="col">Raised
+                                        <span>
+                                        </span>
+                                    </th>
+                                    <th hscope="col">Type
+                                        <span>
+                                        </span>
+                                    </th>
+                                    <th hscope="col">Number of rates
+                                        <span>
+                                        </span>
+                                    </th>
+                                    <th hscope="col" data-toggle="tooltip" data-placement="right" title="Rating Aggregated Score">
+                                        RAS
+                                        <span>
+                                            <i class="fas fa-sort-down"></i>
+                                        </span>
+                                    </th>
+                                    <th hscope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="main_body1">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 d-none d-lg-block">
+                    </div>
+                    <div class="col-lg-10">
+                        <table id="detailed_table1" class="table table-hover">
+                            <thead id="detailed_header">
+                                <th hscope="col"></th>
+                                <th hscope="col"></th>
+                                <th hscope="col">Name
+                                    <span>
+                                    </span>
+                                </th>
+                            </thead>
+                            <tbody id="detailed_body1">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-2 d-none d-lg-block">
             </div>
             <div class="col-lg-8">
                 <table class="table table-hover" id="main_table">
-                    <thead id="main_header">
+                    <thead id="main_header1" style="visibility: hidden">
                         <tr>
                             <th></th>
                             <th hscope="col"></th>
@@ -260,15 +320,14 @@
             </div>
             <div class="col-lg-10">
                 <table id="detailed_table" class="table table-hover">
-                    <thead>
-                        <tr id="detailed_header">
-                            <th hscope="col"></th>
-                            <th hscope="col"></th>
-                            <th hscope="col">Name
-                                <span>
-                                </span>
-                            </th>
-                        </tr>
+                    <thead id="detailed_header1" style="visibility: hidden">
+                        <th hscope="col"></th>
+                        <th hscope="col"></th>
+                        <th hscope="col">Name
+                            <span>
+                            </span>
+                        </th>
+                    </thead>
                     </thead>
                     <tbody id="detailed_body">
 
