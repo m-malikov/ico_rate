@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   $.get("ratings.json", function(data) {
-    //data = JSON.parse(data)
+    data = JSON.parse(data);
     data.forEach(ico => {
       ico.avgRate = 0;
       ico.nRates = ico.rates.length;
