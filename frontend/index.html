@@ -11,11 +11,9 @@
         crossorigin="anonymous">
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
-        /*@media only screen and (max-width: 700px) {
-            [class="mobile-style"] {
-                width: 620px !important;
-            }
-        }*/
+        body {
+            zoom: 60%;
+        }
 
         .logo img {
             padding: 30px;
@@ -94,7 +92,6 @@
         }
 
         #topButton {
-            /*display: none;*/
             position: fixed;
             top: 10px;
             left: 10px;
@@ -106,6 +103,10 @@
         }
 
         .table>tbody>tr>td {
+            vertical-align: middle;
+        }
+
+        .table>thead>tr>th {
             vertical-align: middle;
         }
     </style>
@@ -195,16 +196,6 @@
                             <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
                                 title="-top-10<br>-top-50">RAS formula</button>
                         </div>
-                        <div class="control">
-                            <div class="input-group">
-                                <input class="form-control" id="search" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                     <div class="col-lg-auto">
                         <a href="https://idacb.com/" class="logo">
@@ -219,8 +210,14 @@
                         <table class="table table-hover" id="main_table1">
                             <thead id="main_header">
                                 <tr>
-                                    <th></th>
-                                    <th hscope="col"></th>
+                                    <th colspan=2>
+                                        <div class="input-group">
+                                            <input class="form-control search" placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                            </div>
+                                        </div>
+                                    </th>
                                     <th hscope="col">Name
                                         <span>
                                         </span>
@@ -261,8 +258,14 @@
                     <div class="col-lg-10">
                         <table id="detailed_table1" class="table table-hover">
                             <thead id="detailed_header">
-                                <th hscope="col"></th>
-                                <th hscope="col"></th>
+                                <th colspan=2>
+                                    <div class="input-group">
+                                        <input class="form-control search" placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                        </div>
+                                    </div>
+                                </th>
                                 <th hscope="col">Name
                                     <span>
                                     </span>
@@ -283,8 +286,14 @@
                 <table class="table table-hover" id="main_table">
                     <thead id="main_header1" style="visibility: hidden">
                         <tr>
-                            <th></th>
-                            <th hscope="col"></th>
+                            <th colspan=2>
+                                <div class="input-group">
+                                    <input class="form-control">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                    </div>
+                                </div>
+                            </th>
                             <th hscope="col">Name
                                 <span>
                                 </span>
@@ -325,8 +334,14 @@
             <div class="col-lg-10">
                 <table id="detailed_table" class="table table-hover">
                     <thead id="detailed_header1" style="visibility: hidden">
-                        <th hscope="col"></th>
-                        <th hscope="col"></th>
+                        <th colspan=2>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                </div>
+                            </div>
+                        </th>
                         <th hscope="col">Name
                             <span>
                             </span>

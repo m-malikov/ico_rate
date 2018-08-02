@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   $.get("ratings.json", function(data) {
-    data = JSON.parse(data);
+    //data = JSON.parse(data);
     data.forEach(ico => {
       ico.avgRate = 0;
       ico.nRates = ico.rates.length;
@@ -368,10 +368,15 @@ $(document).ready(function() {
       var type = $(".status.active").text();
 
       let filteredData = [];
-      var searchString = $("#search")
+      var searchString = $(".search")
+        .first()
         .val()
         .toLowerCase();
-      if (!$("#search").val()) {
+      if (
+        !$(".search")
+          .first()
+          .val()
+      ) {
         $("#clear").hide();
       }
       console.log(searchString);
@@ -418,8 +423,14 @@ $(document).ready(function() {
     });
 
     $("th").click(function() {
-      if (!$(this).text()) return;
-
+      if (
+        !$(this).text() ||
+        $(this)
+          .text()
+          .includes("Clear")
+      )
+        return;
+      console.log($(this).text());
       var isReversed =
         $(this)
           .children()
@@ -431,7 +442,7 @@ $(document).ready(function() {
         .html("");
       $(this)
         .children()
-        .first()
+        .firsv()
         .html(
           isReversed
             ? ' <i class="fas fa-sort-up"></i>'
@@ -440,14 +451,19 @@ $(document).ready(function() {
       updateTables();
     });
 
-    $("#search").keyup(function() {
-      if ($("#search").val()) {
+    $(".search").keyup(function() {
+      $(".search").val($(this).val());
+      if (
+        $(".search")
+          .first()
+          .val()
+      ) {
         $("#clear").show();
       }
       updateTables();
     });
     $("#clear").click(function() {
-      $("#search").val("");
+      $(".search").val("");
       updateTables();
     });
     $("#topButton").click(function() {
