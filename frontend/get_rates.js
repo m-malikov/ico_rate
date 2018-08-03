@@ -479,7 +479,8 @@ $(document).ready(function() {
           $("#page-header").height() -
             $("#main_body1").height() -
             $("#detailed_body1").height() -
-            50
+            $("#main_header1").height() -
+            20
         );
       })
       .resize();
