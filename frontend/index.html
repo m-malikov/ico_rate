@@ -13,11 +13,13 @@
     <style>
         body {
             zoom: 60%;
+            font-size: 20px !important;
+            line-height: 2 !important;
         }
 
         .logo img {
             padding: 30px;
-            max-height: 200px;
+            max-height: 300px;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -29,7 +31,7 @@
         }
 
         .rowLogo {
-            height: 20px;
+            height: 40px;
             margin-bottom: 20px;
         }
 
@@ -39,8 +41,7 @@
         }
 
         .ico-logo {
-            max-width: 30px;
-            margin-right: 20px;
+            max-width: 50px;
         }
 
         table.controls tr td {
@@ -74,6 +75,11 @@
             width: 100%;
             top: 0;
             z-index: 99;
+        }
+
+        #header-container {
+            padding: 0;
+            margin: 0;
         }
 
         #formula {
@@ -116,7 +122,7 @@
     <button id="topButton" class="btn btn-light">Go up</button>
     <div class="container-fluid">
         <div id="page-header">
-            <div class="container-fluid">
+            <div class="container-fluid" id="header-container">
                 <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
                     <div class="col-lg-auto">
                         <a href="https://idacb.com/" class="logo">
