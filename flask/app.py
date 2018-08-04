@@ -1,8 +1,10 @@
 import json
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 icos = json.loads(open("ratings.json").read())
 
@@ -53,7 +55,6 @@ for i in icos:
 
 icos = sorted(icos, key=get_key("ras", is_reverse=True), reverse=True)
 for i in icos[:100]:
-    print(i["ras"])
     i["isTop"] = True
 
 def ico_fits_params(ico, params):
@@ -69,13 +70,15 @@ def ico_fits_params(ico, params):
 
 
 @app.route('/', methods=["POST"])
+@cross_origin()
 def index():
     params = request.get_json()
     filtered_icos = [i for i in icos if ico_fits_params(i, params)] 
     sorted_icos = sorted(filtered_icos, key=get_key(params["sortBy"], params["reverse"]), reverse=params["reverse"])
     return jsonify(sorted_icos[params["offset"]:params["offset"] + params["length"]])
 
-@app.route('/levels', methods=["GET"])
+@app.route('/levels', methods=["POST"])
+@cross_origin()
 def levels():
     result = {}
     sortBy = sources + ["ras"]
@@ -95,6 +98,7 @@ def levels():
     return jsonify(result)
 
 @app.route('/by_names', methods=["POST"])
+@cross_origin()
 def by_names():
     names = request.get_json()
     result = []
@@ -105,4 +109,4 @@ def by_names():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=81)

@@ -1,6 +1,7 @@
 "use strict";
 
 var xhr = new XMLHttpRequest();
+var hostname = "62.109.27.157";
 xhr.onload = function() {
   var levels = JSON.parse(xhr.response);
   $(document).ready(function() {
@@ -350,11 +351,11 @@ xhr.onload = function() {
           });
           $(window).resize();
         };
-        xhr2.open("POST", "http://localhost:5000/by_names", true);
+        xhr2.open("POST", "http://"+hostname+":81/by_names", true);
         xhr2.setRequestHeader("Content-Type", "application/json");
         xhr2.send(JSON.stringify(Array.from(starredNames)));
       };
-      xhr.open("POST", "http://localhost:5000", true);
+      xhr.open("POST", "http://"+hostname+":81", true);
       xhr.setRequestHeader("Content-Type", "application/json");
       let params = {
         sortBy: columnName.toLowerCase(),
@@ -439,6 +440,6 @@ xhr.onload = function() {
     });
   });
 };
-xhr.open("GET", "http://localhost:5000/levels", true);
+xhr.open("POST", "http://"+hostname+":81/levels", true);
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send();
