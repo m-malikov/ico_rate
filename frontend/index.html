@@ -13,8 +13,8 @@
     <style>
         body {
             zoom: 60%;
-            font-size: 18px !important;
-            line-height: 1.8 !important;
+            font-size: 20px !important;
+            line-height: 2 !important;
         }
 
         .logo img {
@@ -31,7 +31,7 @@
         }
 
         .rowLogo {
-            height: 20px;
+            height: 40px;
             margin-bottom: 20px;
         }
 
@@ -66,20 +66,14 @@
             display: inline-block;
             margin-left: 1em;
             margin-bottom: 1em;
-            margin-top: 1.5em;
+            margin-top: 2em;
         }
 
         #page-header {
             position: fixed;
-            /*background-color: #FFF;*/
             width: 100%;
             top: 0;
             z-index: 99;
-        }
-
-        #header-container {
-            padding: 0;
-            margin: 0;
         }
 
         #formula {
@@ -98,6 +92,7 @@
         }
 
         #topButton {
+            /*display: none;*/
             position: fixed;
             top: 10px;
             left: 10px;
@@ -108,12 +103,110 @@
             margin-bottom: 1em;
         }
 
-        .table>tbody>tr>td {
+        .table>tbody>tr>td,
+        th {
             vertical-align: middle;
+            font-size: 22px;
         }
 
-        .table>thead>tr>th {
-            vertical-align: middle;
+        #main_header>tr>th:nth-child(1) {
+            width: 20%;
+        }
+
+        #main_header>tr>th:nth-child(2) {
+            width: 15%;
+        }
+
+        #main_header>tr>th:nth-child(3) {
+            width: 12%;
+        }
+
+        #main_header>tr>th:nth-child(4) {
+            width: 9%;
+        }
+
+        #main_header>tr>th:nth-child(5) {
+            width: 8%;
+        }
+
+        #main_header>tr>th:nth-child(6) {
+            width: 14%;
+        }
+
+        #main_header>tr>th:nth-child(7) {
+            width: 7%;
+        }
+
+        #main_header>tr>th:nth-child(8) {
+            width: 4%;
+        }
+
+        #main_header>tr>th:nth-child(9) {
+            width: 11%;
+        }
+
+        #main_body>tr>td:nth-child(1) {
+            width: 15%;
+        }
+
+        #main_body>tr>td:nth-child(2) {
+            width: 5%;
+        }
+
+        #main_body>tr>td:nth-child(3) {
+            width: 15%;
+        }
+
+        #main_body>tr>td:nth-child(4) {
+            width: 12%;
+        }
+
+        #main_body>tr>td:nth-child(5) {
+            width: 9%;
+        }
+
+        #main_body>tr>td:nth-child(6) {
+            width: 8%;
+        }
+
+        #main_body>tr>td:nth-child(7) {
+            width: 14%;
+        }
+
+        #main_body>tr>td:nth-child(8) {
+            width: 7%;
+        }
+
+        #main_body>tr>td:nth-child(9) {
+            width: 4%;
+        }
+
+        #main_body>tr>td:nth-child(10) {
+            width: 11%;
+        }
+
+        #detailed_header>tr>th {
+            width: 6%;
+        }
+
+        #detailed_header>tr>th:nth-child(1) {
+            width: 13%;
+        }
+
+        #detailed_header>tr>th:nth-child(2) {
+            width: 9%;
+        }
+
+        #detailed_body>tr>td {
+            width: 6%;
+        }
+
+        #detailed_body>tr>td:nth-child(2) {
+            width: 7%;
+        }
+
+        #detailed_body>tr>td:nth-child(3) {
+            width: 9%;
         }
     </style>
 </head>
@@ -122,7 +215,7 @@
     <button id="topButton" class="btn btn-light">Go up</button>
     <div class="container-fluid">
         <div id="page-header">
-            <div class="container-fluid" id="header-container">
+            <div class="container-fluid">
                 <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
                     <div class="col-lg-auto">
                         <a href="https://idacb.com/" class="logo">
@@ -130,8 +223,8 @@
                         </a>
                     </div>
                     <div class="col-lg-6 text-center">
-                        <h2 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
-                transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h2>
+                        <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
+                transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h1>
                         <div class="d-flex justify-content-around flex-wrap">
                             <a href="https://icobench.com/">
                                 <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
@@ -202,6 +295,11 @@
                             <button class="btn btn-light" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
                                 title="-top-10<br>-top-50">RAS formula</button>
                         </div>
+                        <div class="control">
+
+                        </div>
+
+
                     </div>
                     <div class="col-lg-auto">
                         <a href="https://idacb.com/" class="logo">
@@ -209,18 +307,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="main_row">
                     <div class="col-2 d-none d-lg-block">
                     </div>
-                    <div class="col-lg-8">
-                        <table class="table table-hover" id="main_table1">
+                    <div class="col-lg-8" style="padding: 0">
+                        <table class="table table-hover" id="main_table_top">
                             <thead id="main_header">
                                 <tr>
                                     <th colspan=2>
                                         <div class="input-group">
                                             <input class="form-control search" placeholder="Search">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                                <button class="btn btn-outline-danger clear" type="button">Clear</button>
                                             </div>
                                         </div>
                                     </th>
@@ -251,24 +349,23 @@
                                         </span>
                                     </th>
                                     <th hscope="col"></th>
+                                    <th hscope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="main_body1">
-                            </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="detailed_row">
                     <div class="col-1 d-none d-lg-block">
                     </div>
-                    <div class="col-lg-10">
-                        <table id="detailed_table1" class="table table-hover">
+                    <div class="col-lg-10" style="padding: 0">
+                        <table id="detailed_table_top" class="table table-hover">
                             <thead id="detailed_header">
-                                <th colspan=2>
+                                <th hscope="col" colspan=2>
                                     <div class="input-group">
                                         <input class="form-control search" placeholder="Search">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
+                                            <button class="btn btn-outline-danger clear" type="button">Clear</button>
                                         </div>
                                     </div>
                                 </th>
@@ -277,9 +374,6 @@
                                     </span>
                                 </th>
                             </thead>
-                            <tbody id="detailed_body1">
-
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -290,45 +384,6 @@
             </div>
             <div class="col-lg-8">
                 <table class="table table-hover" id="main_table">
-                    <thead id="main_header1" style="visibility: hidden">
-                        <tr>
-                            <th colspan=2>
-                                <div class="input-group">
-                                    <input class="form-control">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
-                                    </div>
-                                </div>
-                            </th>
-                            <th hscope="col">Name
-                                <span>
-                                </span>
-                            </th>
-                            <th hscope="col">Goal
-                                <span>
-                                </span>
-                            </th>
-                            <th hscope="col">Raised
-                                <span>
-                                </span>
-                            </th>
-                            <th hscope="col">Type
-                                <span>
-                                </span>
-                            </th>
-                            <th hscope="col">Number of rates
-                                <span>
-                                </span>
-                            </th>
-                            <th hscope="col" data-toggle="tooltip" data-placement="right" title="Rating Aggregated Score">
-                                RAS
-                                <span>
-                                    <i class="fas fa-sort-down"></i>
-                                </span>
-                            </th>
-                            <th hscope="col"></th>
-                        </tr>
-                    </thead>
                     <tbody id="main_body">
                     </tbody>
                 </table>
@@ -339,23 +394,7 @@
             </div>
             <div class="col-lg-10">
                 <table id="detailed_table" class="table table-hover">
-                    <thead id="detailed_header1" style="visibility: hidden">
-                        <th colspan=2>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
-                                </div>
-                            </div>
-                        </th>
-                        <th hscope="col">Name
-                            <span>
-                            </span>
-                        </th>
-                    </thead>
-                    </thead>
                     <tbody id="detailed_body">
-
                     </tbody>
                 </table>
             </div>

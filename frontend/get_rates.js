@@ -1,31 +1,11 @@
 "use strict";
 
-$(document).ready(function() {
-  $.get("ratings.json", function(data) {
-    //data = JSON.parse(data);
-    data.forEach(ico => {
-      ico.avgRate = 0;
-      ico.nRates = ico.rates.length;
-      ico.tooltipText = "";
-      ico.rates.forEach(rate => {
-        ico.avgRate += rate.number;
-        ico.tooltipText += `<strong>${rate.source}</strong>: ${
-          rate.verbose
-        }<br>`;
-      });
-      ico.avgRate = Math.round(ico.avgRate / ico.nRates);
-      ico.avgRate = Math.round(
-        (ico.avgRate * (1 + (ico.nRates - 3) * 0.05)) / 1.2
-      );
-    });
-
-    data.sort(function(a, b) {
-      return b.avgRate - a.avgRate;
-    });
-
-    var greenLevel = { avg: data[50].avgRate };
-    var yelowLevel = { avg: data[10].avgRate };
-
+var xhr = new XMLHttpRequest();
+xhr.onload = function() {
+  var levels = JSON.parse(xhr.response);
+  $(document).ready(function() {
+    var limit = 100;
+    var starredNames = new Set();
     var sources = [
       "ICO Bench",
       "ICO Rating",
@@ -40,35 +20,6 @@ $(document).ready(function() {
     ];
 
     sources.forEach(source => {
-      data.sort(function(a, b) {
-        let aRate = -101;
-        a.rates.forEach(rate => {
-          if (rate.source == source) {
-            aRate = rate.number;
-          }
-        });
-        let bRate = -101;
-        b.rates.forEach(rate => {
-          if (rate.source == source) {
-            bRate = rate.number;
-          }
-        });
-        return bRate - aRate;
-      });
-
-      data[10].rates.forEach(rate => {
-        if (rate.source == source) {
-          yelowLevel[source] = rate.number;
-        }
-      });
-      data[50].rates.forEach(rate => {
-        if (rate.source == source) {
-          greenLevel[source] = rate.number;
-        }
-      });
-    });
-
-    sources.forEach(source => {
       var th = document.createElement("th");
       th.innerText = source;
       var span = document.createElement("span");
@@ -77,10 +28,6 @@ $(document).ready(function() {
         .children()
         .first()
         .append(th);
-      $("#detailed_header1")
-        .children()
-        .first()
-        .append($(th).clone());
     });
 
     var th = document.createElement("th");
@@ -92,24 +39,21 @@ $(document).ready(function() {
       .children()
       .first()
       .append(th);
-    $("#detailed_header1")
-      .children()
-      .first()
-      .append($(th).clone());
 
     var th = document.createElement("th");
     $("#detailed_header")
       .children()
       .first()
       .append(th);
-    $("#detailed_header1")
+
+    var th = document.createElement("th");
+    $("#detailed_header")
       .children()
       .first()
-      .append($(th).clone());
-
-    function drawMainTable(filteredData) {
+      .append(th);
+    function drawMainTable(data) {
       let num = 1;
-      filteredData.forEach(i => {
+      data.forEach(i => {
         var row = document.createElement("tr");
         row.addEventListener("click", function() {
           document.location = i.link;
@@ -149,16 +93,16 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        cell.innerText = i.nRates;
+        cell.innerText = i.rates.length;
         row.appendChild(cell);
 
         var cell = document.createElement("td");
-        var h = document.createElement("h5");
+        var h = document.createElement("h3");
         var span = document.createElement("span");
         var classList = ["badge"];
-        if (i.avgRate >= yelowLevel.avg) {
+        if (i.ras >= levels.ras.yellow) {
           classList.push("badge-warning");
-        } else if (i.avgRate >= greenLevel.avg) {
+        } else if (i.ras >= levels.ras.green) {
           classList.push("badge-success");
         } else {
           classList.push("badge-light");
@@ -166,16 +110,29 @@ $(document).ready(function() {
         classList.forEach(c => {
           span.classList.add(c);
         });
-        span.innerText = i.avgRate;
+        span.innerText = i.ras;
         h.appendChild(span);
         cell.appendChild(h);
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        if (starredNames.has(i.name)) {
+          cell.innerHTML = '<i class="fas fa-star text-warning"></i>';
+        } else {
+          cell.innerHTML = '<i class="far fa-star text-warning"></i>';
+        }
+        cell.classList.add("star");
         row.appendChild(cell);
 
         var cell = document.createElement("td");
         var b = document.createElement("button");
         b.classList.add("btn");
         b.classList.add("btn-warning");
-        b.innerText = "Invest";
+        if (i.isTop) {
+          b.innerText = "Investdrop";
+        } else {
+          b.innerText = "Invest";
+        }
         b.addEventListener("click", function(event, arg) {
           event.stopPropagation();
           var win = window.open(
@@ -187,21 +144,28 @@ $(document).ready(function() {
         cell.appendChild(b);
         row.appendChild(cell);
 
-        row.setAttribute("data-toggle", "tooltip");
-        row.setAttribute("data-placement", "right");
-        row.setAttribute("data-html", "true");
-        row.setAttribute("title", i.tooltipText);
         row.classList.add("ico");
         $("#main_body").append(row);
-        $("#main_body1").append($(row).clone());
       });
-      $("#main_body1").css("visibility", "hidden");
+      var row = document.createElement("tr");
+      var cell = document.createElement("td");
+      cell.setAttribute("colspan", 9);
+      cell.innerText = "Show more";
+      cell.style.textAlign = "center";
+      row.appendChild(cell);
+      row.classList.add("ico");
+      row.classList.add("showMore");
+      row.addEventListener("click", function() {
+        limit += 100;
+        updateTables();
+      });
+      $("#main_body").append(row);
       $('[data-toggle="tooltip"]').tooltip();
     }
 
-    function drawDetailedTable(filteredData) {
+    function drawDetailedTable(data) {
       var num = 1;
-      filteredData.forEach(i => {
+      data.forEach(i => {
         var row = document.createElement("tr");
         row.addEventListener("click", function() {
           document.location = i.link;
@@ -230,12 +194,12 @@ $(document).ready(function() {
           var td = document.createElement("td");
           i.rates.forEach(rate => {
             if (rate.source == source) {
-              var h = document.createElement("h5");
+              var h = document.createElement("h3");
               var span = document.createElement("span");
               var classList = ["badge"];
-              if (rate.number >= yelowLevel[source]) {
+              if (rate.number >= levels[source].yellow) {
                 classList.push("badge-warning");
-              } else if (rate.number >= greenLevel[source]) {
+              } else if (rate.number >= levels[source].green) {
                 classList.push("badge-success");
               } else {
                 classList.push("badge-light");
@@ -257,12 +221,12 @@ $(document).ready(function() {
         });
 
         var cell = document.createElement("td");
-        var h = document.createElement("h5");
+        var h = document.createElement("h3");
         var span = document.createElement("span");
         var classList = ["badge"];
-        if (i.avgRate >= yelowLevel.avg) {
+        if (i.ras >= levels.ras.yellow) {
           classList.push("badge-warning");
-        } else if (i.avgRate >= greenLevel.avg) {
+        } else if (i.ras >= levels.ras.green) {
           classList.push("badge-success");
         } else {
           classList.push("badge-light");
@@ -270,16 +234,29 @@ $(document).ready(function() {
         classList.forEach(c => {
           span.classList.add(c);
         });
-        span.innerText = i.avgRate;
+        span.innerText = i.ras;
         h.appendChild(span);
         cell.appendChild(h);
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        if (starredNames.has(i.name)) {
+          cell.innerHTML = '<i class="fas fa-star text-warning"></i>';
+        } else {
+          cell.innerHTML = '<i class="far fa-star text-warning"></i>';
+        }
+        cell.classList.add("star");
         row.appendChild(cell);
 
         var cell = document.createElement("td");
         var b = document.createElement("button");
         b.classList.add("btn");
         b.classList.add("btn-warning");
-        b.innerText = "Invest";
+        if (i.isTop) {
+          b.innerText = "Investdrop";
+        } else {
+          b.innerText = "Invest";
+        }
         b.addEventListener("click", function(event, arg) {
           event.stopPropagation();
           var win = window.open(
@@ -293,12 +270,25 @@ $(document).ready(function() {
         row.appendChild(cell);
 
         $("#detailed_body").append(row);
-        $("#detailed_body1").append($(row).clone());
       });
-      $("#detailed_body1").css("visibility", "hidden");
+      var row = document.createElement("tr");
+      var cell = document.createElement("td");
+      cell.setAttribute("colspan", 15);
+      cell.innerText = "Show more";
+      cell.style.textAlign = "center";
+      row.appendChild(cell);
+      row.classList.add("ico");
+      row.classList.add("showMore");
+      row.addEventListener("click", function() {
+        limit += 100;
+        updateTables();
+      });
+      $("#detailed_body").append(row);
     }
 
-    function sortRows(filteredData) {
+    function updateTables() {
+      $("tr.ico").remove();
+
       let activeTableId =
         $(".detailed.active").text() == "On"
           ? "#detailed_header"
@@ -311,63 +301,11 @@ $(document).ready(function() {
         .trim();
       let reverse = $(activeTableId)
         .find(".fas")
-        .hasClass("fa-sort-up")
-        ? -1
-        : 1;
-
-      console.log($(activeTableId).find(".fas"));
-      function strcmp(s1, s2) {
-        return s1 < s2 ? -1 : +(s1 > s2);
-      }
-
-      function compare(a, b) {
-        if ($.inArray(columnName, sources) != -1) {
-          let aRate = -101 * reverse;
-          a.rates.forEach(rate => {
-            if (rate.source == columnName) {
-              aRate = rate.number;
-            }
-          });
-          let bRate = -101 * reverse;
-          b.rates.forEach(rate => {
-            if (rate.source == columnName) {
-              bRate = rate.number;
-            }
-          });
-          return (bRate - aRate) * reverse;
-        } else {
-          var res;
-          if (columnName == "Name") {
-            res = strcmp(a.name, b.name);
-          } else if (columnName == "RAS") {
-            res = b.avgRate - a.avgRate;
-          } else if (columnName == "Number of rates") {
-            res = b.nRates - a.nRates;
-          } else if (columnName == "Type") {
-            res = a.isPre - b.isPre;
-          } else if (columnName == "Goal") {
-            let aRes = a.goal ? a.goal : -Infinity * reverse;
-            let bRes = b.goal ? b.goal : -Infinity * reverse;
-            res = bRes - aRes;
-          } else if (columnName == "Raised") {
-            let aRes = a.raised ? a.raised : -Infinity * reverse;
-            let bRes = b.raised ? b.raised : -Infinity * reverse;
-            res = bRes - aRes;
-          }
-          return res * reverse;
-        }
-      }
-      let sortedData = filteredData.sort(compare);
-      return sortedData;
-    }
-
-    function updateTables() {
-      $("tr.ico").remove();
+        .hasClass("fa-sort-down");
 
       var minRates = $(".nrates.active").text();
       var type = $(".status.active").text();
 
-      let filteredData = [];
       var searchString = $(".search")
         .first()
         .val()
@@ -377,40 +315,61 @@ $(document).ready(function() {
           .first()
           .val()
       ) {
-        $("#clear").hide();
+        $(".clear").hide();
       }
-      console.log(searchString);
-      data.forEach(i => {
-        if (
-          i.nRates >= minRates &&
-          (type == "All" ||
-            (type == "ICO" && !i.isPre) ||
-            (type == "Pre-ICO" && i.isPre)) &&
-          (!searchString || i.name.toLowerCase().indexOf(searchString) !== -1)
-        ) {
-          filteredData.push(i);
-        }
-      });
 
-      let sortedData = sortRows(filteredData);
-
-      drawDetailedTable(sortedData);
-      drawMainTable(sortedData);
-      if ($(".detailed.active").text() == "On") {
-        $("#main_table").hide();
-        $("#main_table1").hide();
-        $("#detailed_table").show();
-        $("#detailed_table1").show();
-        //$("#main_table").floatThead("destroy");
-        //$("#detailed_table").floatThead();
-      } else {
-        $("#main_table").show();
-        $("#main_table1").show();
-        $("#detailed_table").hide();
-        $("#detailed_table1").hide();
-        //$("#detailed_table").floatThead("destroy");
-        //$("#main_table").floatThead();
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        var data = JSON.parse(xhr.response);
+        var xhr2 = new XMLHttpRequest();
+        xhr2.onload = function() {
+          var data2 = JSON.parse(xhr2.response);
+          data = data2.concat(data);
+          drawDetailedTable(data);
+          drawMainTable(data);
+          if ($(".detailed.active").text() == "On") {
+            $("#main_table").hide();
+            $("#main_row").hide();
+            $("#detailed_table").show();
+            $("#detailed_row").show();
+          } else {
+            $("#main_table").show();
+            $("#main_row").show();
+            $("#detailed_table").hide();
+            $("#detailed_row").hide();
+          }
+          $(".star").click(function(evt) {
+            evt.stopPropagation();
+            var name = this.parentElement.childNodes[2].innerText;
+            if (starredNames.has(name)) {
+              starredNames.delete(name);
+            } else {
+              starredNames.add(name);
+            }
+            updateTables();
+          });
+          $(window).resize();
+        };
+        xhr2.open("POST", "http://localhost:5000/by_names", true);
+        xhr2.setRequestHeader("Content-Type", "application/json");
+        xhr2.send(JSON.stringify(Array.from(starredNames)));
+      };
+      xhr.open("POST", "http://localhost:5000", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      let params = {
+        sortBy: columnName.toLowerCase(),
+        reverse: reverse,
+        minRates: +minRates,
+        searchString: $("#search").val(),
+        offset: 0,
+        length: limit
+      };
+      if (status == "ICO") {
+        params.isPre = false;
+      } else if (status == "Pre-ICO") {
+        params.isPre = true;
       }
+      xhr.send(JSON.stringify(params));
     }
 
     $("div.btn-group button").click(function() {
@@ -430,7 +389,7 @@ $(document).ready(function() {
           .includes("Clear")
       )
         return;
-      console.log($(this).text());
+
       var isReversed =
         $(this)
           .children()
@@ -442,7 +401,7 @@ $(document).ready(function() {
         .html("");
       $(this)
         .children()
-        .firsv()
+        .first()
         .html(
           isReversed
             ? ' <i class="fas fa-sort-up"></i>'
@@ -458,32 +417,28 @@ $(document).ready(function() {
           .first()
           .val()
       ) {
-        $("#clear").show();
+        $(".clear").show();
       }
       updateTables();
     });
-    $("#clear").click(function() {
+
+    $(".clear").click(function() {
       $(".search").val("");
       updateTables();
     });
+
     $("#topButton").click(function() {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     });
 
     updateTables();
-    $(window)
-      .resize(function() {
-        $(document.body).css(
-          "margin-top",
-          $("#page-header").height() -
-            $("#main_body1").height() -
-            $("#detailed_body1").height() -
-            $("#main_header1").height() -
-            20
-        );
-      })
-      .resize();
-    //$("#detailed_table").hide();
+
+    $(window).resize(function() {
+      $(document.body).css("margin-top", $("#page-header").height() - 30);
+    });
   });
-});
+};
+xhr.open("GET", "http://localhost:5000/levels", true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send();
