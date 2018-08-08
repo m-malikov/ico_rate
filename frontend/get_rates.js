@@ -56,7 +56,8 @@ xhr.onload = function() {
     function addMainRow(ico, num) {
       var row = document.createElement("tr");
       row.addEventListener("click", function() {
-        document.location = ico.link;
+        var win = window.open(ico.link);
+        win.focus();
       });
 
       var cell = document.createElement("td");
@@ -195,7 +196,8 @@ xhr.onload = function() {
     function drawDetailedRow(ico, num) {
       var row = document.createElement("tr");
       row.addEventListener("click", function() {
-        document.location = ico.link;
+        var win = window.open(ico.link);
+        win.focus();
       });
 
       var cell = document.createElement("td");
