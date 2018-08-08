@@ -21,6 +21,7 @@ sources = [
     "Tokentops"
 ]
 
+
 def get_key(search_string, is_reverse=False):
     if search_string in ["name", "ras"]:
         return lambda x: x[search_string]
@@ -36,7 +37,7 @@ def get_key(search_string, is_reverse=False):
     elif search_string == "nrates":
         return lambda x: len(x["rates"])
     elif search_string in map(lambda x: x.lower(), sources):
-        def get_rate_number(x):        
+        def get_rate_number(x):
             for i in x["rates"]:
                 if i["source"].lower() == search_string:
                     return i["number"]
@@ -50,15 +51,16 @@ for i in icos:
     for r in i["rates"]:
         total_score += r["number"]
     avg_score = total_score / n_rates
-    i["ras"] = int( (avg_score * (1 + (n_rates - 3) * 0.05)) / 1.2 )
+    i["ras"] = int((avg_score * (1 + (n_rates - 3) * 0.09)) / 1.2)
 
 
 icos = sorted(icos, key=get_key("ras", is_reverse=True), reverse=True)
 for i in icos[:100]:
     i["isTop"] = True
 
+
 def ico_fits_params(ico, params):
-    if "isPre" in params and  params["isPre"] != ico["isPre"]:
+    if "isPre" in params and params["isPre"] != ico["isPre"]:
         return False
     if "minRates" in params and params["minRates"] > len(ico["rates"]):
         return False
@@ -67,15 +69,15 @@ def ico_fits_params(ico, params):
     return True
 
 
-
-
 @app.route('/', methods=["POST"])
 @cross_origin()
 def index():
     params = request.get_json()
-    filtered_icos = [i for i in icos if ico_fits_params(i, params)] 
-    sorted_icos = sorted(filtered_icos, key=get_key(params["sortBy"], params["reverse"]), reverse=params["reverse"])
+    filtered_icos = [i for i in icos if ico_fits_params(i, params)]
+    sorted_icos = sorted(filtered_icos, key=get_key(
+        params["sortBy"], params["reverse"]), reverse=params["reverse"])
     return jsonify(sorted_icos[params["offset"]:params["offset"] + params["length"]])
+
 
 @app.route('/levels', methods=["POST"])
 @cross_origin()
@@ -85,7 +87,8 @@ def levels():
     for s in sortBy:
         sorted_icos = sorted(icos, key=get_key(s.lower(), is_reverse=True))
         if s == "ras":
-            result[s] = {"green": sorted_icos[-50][s], "yellow": sorted_icos[-10][s]}
+            result[s] = {"green": sorted_icos[-50]
+                         [s], "yellow": sorted_icos[-10][s]}
         else:
             result[s] = {"green": 0, "yellow": 0}
             for i in sorted_icos[-50]["rates"]:
@@ -93,9 +96,10 @@ def levels():
                     result[s]["green"] = i["number"]
             for i in sorted_icos[-10]["rates"]:
                 if i["source"] == s:
-                    result[s]["yellow"] = i["number"]                   
+                    result[s]["yellow"] = i["number"]
 
     return jsonify(result)
+
 
 @app.route('/by_names', methods=["POST"])
 @cross_origin()
@@ -107,6 +111,7 @@ def by_names():
             if i["name"] == name:
                 result.append(i)
     return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=81)
