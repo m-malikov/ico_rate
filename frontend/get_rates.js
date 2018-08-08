@@ -372,7 +372,7 @@ xhr.onload = function() {
         sortBy: columnName.toLowerCase(),
         reverse: reverse,
         minRates: +minRates,
-        searchString: $("#search").val(),
+        searchString: searchString,
         offset: offset,
         length: 100
       };
@@ -405,9 +405,9 @@ xhr.onload = function() {
           console.log("callback!");
           var data2 = JSON.parse(xhr2.response);
           if (!data.length) {
-            $("#no_data").show();
+            $("#noData").show();
           } else {
-            $("#no_data").hide();
+            $("noData").hide();
           }
           drawDetailedTable(data2, data);
           drawMainTable(data2, data);
