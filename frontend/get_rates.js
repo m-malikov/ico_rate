@@ -155,9 +155,14 @@ xhr.onload = function() {
       $("#main_body").append(row);
     }
 
-    function drawMainTable(data) {
+    function drawMainTable(starredData, data) {
       offset = 0;
       let num = 1;
+      starredData.forEach(i => {
+        addMainRow(i, num);
+        num += 1;
+      });
+      num = 1;
       data.forEach(i => {
         addMainRow(i, num);
         num += 1;
@@ -301,8 +306,13 @@ xhr.onload = function() {
 
       $("#detailed_body").append(row);
     }
-    function drawDetailedTable(data) {
+    function drawDetailedTable(starredData, data) {
       var num = 1;
+      starredData.forEach(i => {
+        drawDetailedRow(i, num);
+        num += 1;
+      });
+      num = 1;
       data.forEach(i => {
         drawDetailedRow(i, num);
         num += 1;
@@ -394,9 +404,13 @@ xhr.onload = function() {
         xhr2.onload = function() {
           console.log("callback!");
           var data2 = JSON.parse(xhr2.response);
-          data = data2.concat(data);
-          drawDetailedTable(data);
-          drawMainTable(data);
+          if (!data.length) {
+            $("#no_data").show();
+          } else {
+            $("#no_data").hide();
+          }
+          drawDetailedTable(data2, data);
+          drawMainTable(data2, data);
           if ($(".detailed.active").text() == "On") {
             $("#main_table").hide();
             $("#main_row").hide();
