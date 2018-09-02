@@ -31,10 +31,10 @@ def get_key(search_string, is_reverse=False):
                 return -1 if is_reverse else 10000000000
             else:
                 return x
-        return lambda x: handle_none(x[search_string])
+        return lambda x: handle_none(x[search_string] if search_string in x else None)
     elif search_string == "type":
         return lambda x: x["isPre"]
-    elif search_string == "nrates":
+    elif search_string == "number of rates":
         return lambda x: len(x["rates"])
     elif search_string in map(lambda x: x.lower(), sources):
         def get_rate_number(x):
@@ -51,7 +51,7 @@ for i in icos:
     for r in i["rates"]:
         total_score += r["number"]
     avg_score = total_score / n_rates
-    i["ras"] = int((avg_score * (1 + (n_rates - 3) * 0.09)) / 1.2)
+    i["ras"] = int((avg_score * (1 + (n_rates - 4) * 0.09)) / 1.2)
 
 
 icos = sorted(icos, key=get_key("ras", is_reverse=True), reverse=True)
@@ -69,17 +69,28 @@ def ico_fits_params(ico, params):
     return True
 
 
-@app.route('/', methods=["POST"])
+@app.route('/api/', methods=["GET"])
 @cross_origin()
 def index():
-    params = request.get_json()
+    params = {}
+    for key in ["minRates", "offset", "length"]:
+        if key in request.args:
+            params[key] = int(request.args[key])
+    for key in ["sortBy", "searchString"]:
+        if key in request.args:
+            params[key] = request.args[key]
+    for key in ["reverse", "isPre"]:
+        if key in request.args:
+            params[key] = request.args[key] == "true"
+    print(params)
+
     filtered_icos = [i for i in icos if ico_fits_params(i, params)]
     sorted_icos = sorted(filtered_icos, key=get_key(
         params["sortBy"], params["reverse"]), reverse=params["reverse"])
     return jsonify(sorted_icos[params["offset"]:params["offset"] + params["length"]])
 
 
-@app.route('/levels', methods=["POST"])
+@app.route('/api/levels', methods=["GET"])
 @cross_origin()
 def levels():
     result = {}
@@ -101,10 +112,10 @@ def levels():
     return jsonify(result)
 
 
-@app.route('/by_names', methods=["POST"])
+@app.route('/api/by_names', methods=["GET"])
 @cross_origin()
 def by_names():
-    names = request.get_json()
+    names = request.args.getlist("name")
     result = []
     for name in names:
         for i in icos:

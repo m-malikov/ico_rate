@@ -1,0 +1,15 @@
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:81/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 460-227-971
+31.173.84.237 - - [25/Aug/2018 05:13:17] "OPTIONS /levels HTTP/1.1" 200 -
+31.173.84.237 - - [25/Aug/2018 05:13:18] "POST /levels HTTP/1.1" 200 -
+31.173.84.237 - - [25/Aug/2018 05:13:18] "OPTIONS / HTTP/1.1" 200 -
+31.173.84.237 - - [25/Aug/2018 05:13:19] "POST / HTTP/1.1" 200 -
+31.173.84.237 - - [25/Aug/2018 05:13:19] "OPTIONS /by_names HTTP/1.1" 200 -
+31.173.84.237 - - [25/Aug/2018 05:13:20] "POST /by_names HTTP/1.1" 200 -

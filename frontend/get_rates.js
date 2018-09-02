@@ -1,7 +1,7 @@
 "use strict";
 
 var xhr = new XMLHttpRequest();
-var hostname = "62.109.27.157";
+var hostname = "icoaggregator.idacb.com/api";
 xhr.onload = function() {
   var offset = 0;
   var levels = JSON.parse(xhr.response);
@@ -130,13 +130,11 @@ xhr.onload = function() {
       b.classList.add("btn-warning");
       if (ico.isTop) {
         b.innerText = "Investdrop";
-        b.addEventListener("click", function(event, arg) {
+        b.setAttribute("data-toggle", "modal");
+        b.setAttribute("data-target", "#investdrop_modal");
+        b.addEventListener("click", function(event) {
           event.stopPropagation();
-          var win = window.open(
-            "https://icoaggregator.idacb.com/investdrop/",
-            "_blank"
-          );
-          win.focus();
+          $("#investdrop_modal").modal("show");
         });
       } else {
         b.innerText = "Invest";
@@ -368,8 +366,6 @@ xhr.onload = function() {
       xhr.onload = function() {
         callback(JSON.parse(xhr.response));
       };
-      xhr.open("POST", "http://" + hostname + ":81", true);
-      xhr.setRequestHeader("Content-Type", "application/json");
       let params = {
         sortBy: columnName.toLowerCase(),
         reverse: reverse,
@@ -383,7 +379,10 @@ xhr.onload = function() {
       } else if (status == "Pre-ICO") {
         params.isPre = true;
       }
-      xhr.send(JSON.stringify(params));
+
+      xhr.open("GET", "https://" + hostname  + "/?" + $.param(params), true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send();
     }
 
     function updateTables() {
@@ -407,9 +406,9 @@ xhr.onload = function() {
           console.log("callback!");
           var data2 = JSON.parse(xhr2.response);
           if (!data.length) {
-            $("#noData").show();
+            $("#no_data").show();
           } else {
-            $("noData").hide();
+            $("#no_data").hide();
           }
           drawDetailedTable(data2, data);
           drawMainTable(data2, data);
@@ -436,9 +435,14 @@ xhr.onload = function() {
           });
           $(window).resize();
         };
-        xhr2.open("POST", "http://" + hostname + ":81/by_names", true);
+        var param_string = "";
+        starredNames.forEach(function serializeName(key, value) {
+            param_string += "name=" + value + "&";
+        });
+        xhr2.open("GET", "https://" + hostname + "/by_names?" + param_string, true);
+        console.log( $.param(Array.from(starredNames)));
         xhr2.setRequestHeader("Content-Type", "application/json");
-        xhr2.send(JSON.stringify(Array.from(starredNames)));
+        xhr2.send();
       });
     }
 
@@ -480,7 +484,7 @@ xhr.onload = function() {
       updateTables();
     });
 
-    $(".search").keyup(function() {
+    $(".search").change(function() {
       $(".search").val($(this).val());
       if (
         $(".search")
@@ -508,7 +512,9 @@ xhr.onload = function() {
       $(document.body).css("margin-top", $("#page-header").height() - 30);
     });
   });
+
+  //$("#no_data").hide();
 };
-xhr.open("POST", "http://" + hostname + ":81/levels", true);
+xhr.open("GET", "https://" + hostname + "/levels", true);
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send();
