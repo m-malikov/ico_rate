@@ -97,7 +97,7 @@ xhr.onload = function() {
       row.appendChild(cell);
 
       var cell = document.createElement("td");
-      var h = document.createElement("h3");
+      var h = document.createElement("h6");
       var span = document.createElement("span");
       var classList = ["badge"];
       if (ico.ras >= levels.ras.yellow) {
@@ -221,7 +221,7 @@ xhr.onload = function() {
         var td = document.createElement("td");
         ico.rates.forEach(rate => {
           if (rate.source == source) {
-            var h = document.createElement("h3");
+            var h = document.createElement("h6");
             var span = document.createElement("span");
             var classList = ["badge"];
             if (rate.number >= levels[source].yellow) {
@@ -248,7 +248,7 @@ xhr.onload = function() {
       });
 
       var cell = document.createElement("td");
-      var h = document.createElement("h3");
+      var h = document.createElement("h6");
       var span = document.createElement("span");
       var classList = ["badge"];
       if (ico.ras >= levels.ras.yellow) {
@@ -354,7 +354,7 @@ xhr.onload = function() {
         .find(".fas")
         .hasClass("fa-sort-down");
 
-      var minRates = $(".nrates.active").text();
+      var minRates = $("#nrates :selected").text();
       var type = $(".status.active").text();
 
       var searchString = $(".search")
@@ -380,7 +380,7 @@ xhr.onload = function() {
         params.isPre = true;
       }
 
-      xhr.open("GET", "https://" + hostname  + "/?" + $.param(params), true);
+      xhr.open("GET", "https://" + hostname + "/?" + $.param(params), true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send();
     }
@@ -437,10 +437,14 @@ xhr.onload = function() {
         };
         var param_string = "";
         starredNames.forEach(function serializeName(key, value) {
-            param_string += "name=" + value + "&";
+          param_string += "name=" + value + "&";
         });
-        xhr2.open("GET", "https://" + hostname + "/by_names?" + param_string, true);
-        console.log( $.param(Array.from(starredNames)));
+        xhr2.open(
+          "GET",
+          "https://" + hostname + "/by_names?" + param_string,
+          true
+        );
+        console.log($.param(Array.from(starredNames)));
         xhr2.setRequestHeader("Content-Type", "application/json");
         xhr2.send();
       });
@@ -452,6 +456,10 @@ xhr.onload = function() {
         .children()
         .removeClass("active");
       $(this).addClass("active");
+      updateTables();
+    });
+
+    $("#nrates").change(function() {
       updateTables();
     });
 
@@ -512,8 +520,6 @@ xhr.onload = function() {
       $(document.body).css("margin-top", $("#page-header").height() - 30);
     });
   });
-
-  //$("#no_data").hide();
 };
 xhr.open("GET", "https://" + hostname + "/levels", true);
 xhr.setRequestHeader("Content-Type", "application/json");

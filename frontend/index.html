@@ -1,365 +1,439 @@
 <doctype html>
-<html lang="en">
+    <html lang="en">
 
-<head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124439821-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124439821-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-  gtag('config', 'UA-124439821-2');
-</script>
+            gtag('config', 'UA-124439821-2');
+        </script>
 
-<!-- Yandex.Metrika counter-->
-<script type="text/javascript" >
-(function (d, w, c) {
-(w[c] = w[c] || []).push(function() {
-try {
-w.yaCounter49454047 = new Ya.Metrika2({
-id:49454047,
-clickmap:true,
-trackLinks:true,
-accurateTrackBounce:true,
-webvisor:true
-});
-} catch(e) { }
-});
+        <!-- Yandex.Metrika counter-->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function () {
+                    try {
+                        w.yaCounter49454047 = new Ya.Metrika2({
+                            id: 49454047,
+                            clickmap: true,
+                            trackLinks: true,
+                            accurateTrackBounce: true,
+                            webvisor: true
+                        });
+                    } catch (e) { }
+                });
 
-var n = d.getElementsByTagName("script")[0],
-s = d.createElement("script"),
-f = function () { n.parentNode.insertBefore(s, n); };
-s.type = "text/javascript";
-s.async = true;
-s.src = "https://mc.yandex.ru/metrika/tag.js";;
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://mc.yandex.ru/metrika/tag.js";;
 
-if (w.opera == "[object Opera]") {
-d.addEventListener("DOMContentLoaded", f, false);
-} else { f(); }
-})(document, window, "yandex_metrika_callbacks2");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/49454047"; style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.85, user-scalable=1, shrink-to-fit=no">
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks2");
+        </script>
+        <noscript>
+            <div>
+                <img src="https://mc.yandex.ru/watch/49454047" ; style="position:absolute; left:-9999px;" alt="" />
+            </div>
+        </noscript>
+        <!-- /Yandex.Metrika counter -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width user-scalable=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-        crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <style>
-        .logo img {
-            padding: 30px;
-            max-height: 200px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+            crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <style>
+            .logo img {
+                padding: 30px;
+                max-height: 200px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-        .lead {
-            margin-top: 2em;
-            margin-bottom: 2em;
-        }
+            .logo_mobile img {
+                padding: 30px;
+                max-height: 150px;
+                display: inline-block;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-        .rowLogo {
-            height: 20px;
-            margin-bottom: 20px;
-        }
+            .logo_mobile {
+                width: 50%;
+            }
 
-        .logos {
-            margin-top: 3em;
-            margin-bottom: 1em;
-        }
 
-        .ico-logo {
-            max-width: 20px;
-        }
+            .lead {
+                margin-top: 2em;
+                margin-bottom: 2em;
+            }
 
-        table.controls tr td {
-            padding-right: 2em;
-            padding-bottom: 0.3em;
-        }
+            .rowLogo {
+                height: 10px;
+                margin-bottom: 20px;
+            }
 
-        table.controls {
-            margin-bottom: 2em;
-        }
+            .logos {
+                margin-top: 3em;
+                margin-bottom: 1em;
+            }
 
-        tr.ico,
-        th {
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+            .ico-logo {
+                max-width: 20px;
+            }
 
-        .control {
-            display: inline-block;
-            margin-left: 1em;
-            margin-bottom: 1em;
-            margin-top: 2em;
-        }
+            table.controls tr td {
+                padding-right: 2em;
+                padding-bottom: 0.3em;
+            }
 
-        #page-header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 99;
-        }
+            table.controls {
+                margin-bottom: 2em;
+            }
 
-        #formula {
-            max-height: 25%;
-            display: block;
-        }
+            tr.ico,
+            th {
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
 
-        thead {
-            border-top: none;
-            border-bottom: none;
-            background-color: #FFF;
-        }
+            .control {
+                display: inline-block;
+                margin-left: 1em;
+                margin-bottom: 1em;
+                margin-top: 2em;
+            }
 
-        .tooltip {
-            pointer-events: none;
-        }
+            #page-header {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: 99;
+            }
 
-        #topButton {
-            /*display: none;*/
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 99;
-        }
+            #formula {
+                max-height: 25%;
+                display: block;
+            }
 
-        #page-title {
-            margin-bottom: 1em;
-        }
+            thead {
+                border-top: none;
+                border-bottom: none;
+                background-color: #FFF;
+            }
 
-        .table>tbody>tr>td,
-        th {
-            vertical-align: middle;
-            font-size: 22px;
-        }
+            .tooltip {
+                pointer-events: none;
+            }
 
-        #main_header>tr>th:nth-child(1) {
-            width: 20%;
-        }
+            #topButton {
+                /*display: none;*/
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 99;
+            }
 
-        #main_header>tr>th:nth-child(2) {
-            width: 15%;
-        }
+            #page-title {
+                margin-bottom: 1em;
+            }
 
-        #main_header>tr>th:nth-child(3) {
-            width: 12%;
-        }
+            .table>tbody>tr>td,
+            th {
+                vertical-align: middle;
+                text-align: center;
+                overflow: hidden;
+            }
 
-        #main_header>tr>th:nth-child(4) {
-            width: 9%;
-        }
+            #detailed_header {
+                font-size: 50%;
+            }
 
-        #main_header>tr>th:nth-child(5) {
-            width: 8%;
-        }
+            #main_header {
+                font-size: 80%;
+            }
 
-        #main_header>tr>th:nth-child(6) {
-            width: 14%;
-        }
+            #main_header>tr>th:nth-child(1) {
+                width: 18%;
+            }
 
-        #main_header>tr>th:nth-child(7) {
-            width: 7%;
-        }
+            #main_header>tr>th:nth-child(2) {
+                width: 14%;
+            }
 
-        #main_header>tr>th:nth-child(8) {
-            width: 4%;
-        }
+            #main_header>tr>th:nth-child(3) {
+                width: 12%;
+            }
 
-        #main_header>tr>th:nth-child(9) {
-            width: 11%;
-        }
+            #main_header>tr>th:nth-child(4) {
+                width: 9%;
+            }
 
-        #main_body>tr>td:nth-child(1) {
-            width: 15%;
-        }
+            #main_header>tr>th:nth-child(5) {
+                width: 8%;
+            }
 
-        #main_body>tr>td:nth-child(2) {
-            width: 5%;
-        }
+            #main_header>tr>th:nth-child(6) {
+                width: 14%;
+            }
 
-        #main_body>tr>td:nth-child(3) {
-            width: 15%;
-        }
+            #main_header>tr>th:nth-child(7) {
+                width: 7%;
+            }
 
-        #main_body>tr>td:nth-child(4) {
-            width: 12%;
-        }
+            #main_header>tr>th:nth-child(8) {
+                width: 7%;
+            }
 
-        #main_body>tr>td:nth-child(5) {
-            width: 9%;
-        }
+            #main_header>tr>th:nth-child(9) {
+                width: 11%;
+            }
 
-        #main_body>tr>td:nth-child(6) {
-            width: 8%;
-        }
+            #main_body>tr>td:nth-child(1) {
+                width: 14%;
+            }
 
-        #main_body>tr>td:nth-child(7) {
-            width: 14%;
-        }
+            #main_body>tr>td:nth-child(2) {
+                width: 4%;
+            }
 
-        #main_body>tr>td:nth-child(8) {
-            width: 7%;
-        }
+            #main_body>tr>td:nth-child(3) {
+                width: 14%;
+            }
 
-        #main_body>tr>td:nth-child(9) {
-            width: 4%;
-        }
+            #main_body>tr>td:nth-child(4) {
+                width: 12%;
+            }
 
-        #main_body>tr>td:nth-child(10) {
-            width: 11%;
-        }
+            #main_body>tr>td:nth-child(5) {
+                width: 9%;
+            }
 
-        #detailed_header>tr>th {
-            width: 6%;
-        }
+            #main_body>tr>td:nth-child(6) {
+                width: 8%;
+            }
 
-        #detailed_header>tr>th:nth-child(1) {
-            width: 13%;
-        }
+            #main_body>tr>td:nth-child(7) {
+                width: 14%;
+            }
 
-        #detailed_header>tr>th:nth-child(2) {
-            width: 9%;
-        }
+            #main_body>tr>td:nth-child(8) {
+                width: 7%;
+            }
 
-        #detailed_body>tr>td {
-            width: 6%;
-        }
+            #main_body>tr>td:nth-child(9) {
+                width: 7%;
+            }
 
-        #detailed_body>tr>td:nth-child(2) {
-            width: 7%;
-        }
+            #main_body>tr>td:nth-child(10) {
+                width: 11%;
+            }
 
-        #detailed_body>tr>td:nth-child(3) {
-            width: 9%;
-        }
+            #detailed_header>tr>th {
+                width: 6%;
+            }
 
-        .btn-sm {
-            font-size: 1rem;
+            #detailed_header>tr>th:nth-child(1) {
+                width: 13%;
+            }
 
-        }
-    </style>
-</head>
+            #detailed_header>tr>th:nth-child(2) {
+                width: 9%;
+            }
 
-<body class="mobile-style">
-    <!-- Google -->
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QSJRPQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Google -->
-    <button id="topButton" class="btn btn-light">Go up</button>
-    <div class="container-fluid">
-        <div id="page-header">
-            <div class="container-fluid">
-                <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
-                    <div class="col-lg-auto">
-                        <a href="https://idacb.com/" class="logo">
-                            <img src="logo.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
+            #detailed_body>tr>td {
+                width: 6%;
+            }
+
+            #detailed_body>tr>td:nth-child(2) {
+                width: 7%;
+            }
+
+            #detailed_body>tr>td:nth-child(3) {
+                width: 9%;
+            }
+        </style>
+    </head>
+
+    <body class="mobile-style">
+        <!-- Google -->
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QSJRPQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <!-- Google -->
+        <button id="topButton" class="btn btn-light">Go up</button>
+        <div class="container-fluid">
+            <div id="page-header">
+                <div class="container-fluid">
+                    <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
+                        <div class="d-lg-none">
+                            <a href="https://idacb.com/" class="logo_mobile col">
+                                <img src="logo.jpg">
+                            </a>
+                            <a href="https://idacb.com/" class="logo_mobile col">
+                                <img src="fund.jpg">
+                            </a>
+                        </div>
+
+                        <div class="col-lg-auto">
+                            <a href="https://idacb.com/" class="logo d-none d-lg-block">
+                                <img src="logo.jpg">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
                 transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h1>
-                        <div class="d-flex justify-content-around flex-wrap">
-                            <a target="_blank" href="https://icobench.com/">
-                                <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
-                            </a>
-                            <a target="_blank" href="https://icorating.com/">
-                                <img class="rowLogo" src="https://icorating.com/svg/logo-icorating.svg" style="background-color: #39f; padding-right: 15px">
-                            </a>
-                            <a target="_blank" href="https://investfuture.ru/">
-                                <img class="rowLogo" src="https://investfuture.ru/images/logo-1-4.png">
-                            </a>
-                            <a target="_blank" href="https://icobazaar.com/">
-                                <img class="rowLogo" src="ICObazaarLogo.png">
-                            </a>
-                            <a target="_blank" href="https://www.trackico.io/">
-                                <img class="rowLogo" src="TrackICO.png">
-                            </a>
-                            <a target="_blank" href="https://icomarks.com/">
-                                <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
-                            </a>
-                            <a target="_blank" href="https://icocrunch.io/">
-                                <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
-                            </a>
-                            <a target="_blank" href="https://www.icochamps.com/">
-                                <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
-                            </a>
-                            <a target="_blank" href="https://crushcrypto.com/">
-                                <img class="rowLogo" src="CrushCrypto.png">
-                            </a>
-                            <a target="_blank" href="https://tokentops.com/">
-                                <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
-                            </a>
-                        </div>
-                        <div class="control">
-                            <div>Type:</div>
-                            <div class="btn-group" role="group">
-                                <button class="status btn btn-light btn-sm">ICO</button>
-                                <button class="status btn btn-light btn-sm">Pre-ICO</button>
-                                <button class="status btn btn-light active btn-sm">All</button>
+                            <div class="d-flex justify-content-around flex-wrap">
+                                <a target="_blank" href="https://icobench.com/">
+                                    <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
+                                </a>
+                                <a target="_blank" href="https://icorating.com/">
+                                    <img class="rowLogo" src="https://icorating.com/svg/logo-icorating.svg" style="background-color: #39f; padding-right: 15px">
+                                </a>
+                                <a target="_blank" href="https://investfuture.ru/">
+                                    <img class="rowLogo" src="https://investfuture.ru/images/logo-1-4.png">
+                                </a>
+                                <a target="_blank" href="https://icobazaar.com/">
+                                    <img class="rowLogo" src="ICObazaarLogo.png">
+                                </a>
+                                <a target="_blank" href="https://www.trackico.io/">
+                                    <img class="rowLogo" src="TrackICO.png">
+                                </a>
+                                <a target="_blank" href="https://icomarks.com/">
+                                    <img class="rowLogo" src="https://icomarks.com/assets/img/logo/icomarks-logo-light.png">
+                                </a>
+                                <a target="_blank" href="https://icocrunch.io/">
+                                    <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
+                                </a>
+                                <a target="_blank" href="https://www.icochamps.com/">
+                                    <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
+                                </a>
+                                <a target="_blank" href="https://crushcrypto.com/">
+                                    <img class="rowLogo" src="CrushCrypto.png">
+                                </a>
+                                <a target="_blank" href="https://tokentops.com/">
+                                    <img class="rowLogo" src="https://tokentops.com/assets/template/img/NEW3.png" style="background-color: #ffd52b">
+                                </a>
                             </div>
-                        </div>
-                        <div class="control">
-                            <div>
-                                Minimum amount of rates:
+                            <div class="control">
+                                <div>Type:</div>
+                                <div class="btn-group" role="group">
+                                    <button class="status btn btn-light btn-sm">ICO</button>
+                                    <button class="status btn btn-light btn-sm">Pre-ICO</button>
+                                    <button class="status btn btn-light active btn-sm">All</button>
+                                </div>
                             </div>
-                            <div class="btn-group" role="group">
-                                <button class="nrates btn btn-light btn-sm active">1</button>
-                                <button class="nrates btn btn-light btn-sm">2</button>
-                                <button class="nrates btn btn-light btn-sm">3</button>
-                                <button class="nrates btn btn-light btn-sm">4</button>
-                                <button class="nrates btn btn-light btn-sm ">5</button>
-                                <button class="nrates btn btn-light btn-sm">6</button>
-                                <button class="nrates btn btn-light btn-sm">7</button>
-                                <button class="nrates btn btn-light btn-sm">8</button>
-                                <button class="nrates btn btn-light btn-sm">9</button>
-                                <button class="nrates btn btn-light btn-sm">10</button>
+                            <div class="control">
+                                <div>
+                                    Votes count:
+                                </div>
+                                <select class="form-control" id="nrates">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="control">
-                            <div>
-                                Rating calculation view:
+                            <div class="control">
+                                <div>
+                                    Rating calculation view:
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button class="detailed btn btn-light btn-sm">On</button>
+                                    <button class="detailed btn btn-light btn-sm active">Off</button>
+                                </div>
                             </div>
-                            <div class="btn-group" role="group">
-                                <button class="detailed btn btn-light btn-sm">On</button>
-                                <button class="detailed btn btn-light btn-sm active">Off</button>
+                            <div class="control">
+                                <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
+                                    title="-top-10<br>-top-50">RAS formula</button>
                             </div>
-                        </div>
-                        <div class="control">
-                            <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#algo_modal" data-toggle="tooltip" data-placement="right"
-                                title="-top-10<br>-top-50">RAS formula</button>
-                        </div>
-                        <div class="control">
+                            <div class="control">
+
+                            </div>
+
 
                         </div>
-
-
+                        <div class="col-lg-auto">
+                            <a href="https://idacb.com/" class="logo d-none d-lg-block">
+                                <img src="fund.jpg">
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-lg-auto">
-                        <a href="https://idacb.com/" class="logo">
-                            <img src="fund.jpg">
-                        </a>
+                    <div class="row" id="main_row">
+                        <div class="col-lg-12" style="padding: 0">
+                            <table class="table table-hover" id="main_table_top">
+                                <thead id="main_header" style="margin-left: 15px; margin-right: 15px;">
+                                    <tr>
+                                        <th colspan=2>
+                                            <div class="input-group">
+                                                <input class="form-control search" placeholder="Search">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-danger clear" type="button">Clear</button>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th hscope="col">Name
+                                            <span>
+                                            </span>
+                                        </th>
+                                        <th hscope="col">Goal
+                                            <span>
+                                            </span>
+                                        </th>
+                                        <th hscope="col">Raised
+                                            <span>
+                                            </span>
+                                        </th>
+                                        <th hscope="col">Type
+                                            <span>
+                                            </span>
+                                        </th>
+                                        <th hscope="col">Number of rates
+                                            <span>
+                                            </span>
+                                        </th>
+                                        <th hscope="col" data-toggle="tooltip" data-placement="right" title="Rating Aggregated Score">
+                                            RAS
+                                            <span>
+                                                <i class="fas fa-sort-down"></i>
+                                            </span>
+                                        </th>
+                                        <th hscope="col"></th>
+                                        <th hscope="col"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="row" id="main_row">
-                    <div class="col-2 d-none d-lg-block">
-                    </div>
-                    <div class="col-lg-8" style="padding: 0">
-                        <table class="table table-hover" id="main_table_top">
-                            <thead id="main_header">
-                                <tr>
-                                    <th colspan=2>
+                    <div class="row" id="detailed_row">
+                        <div class="col-lg-12" style="padding: 0">
+                            <table id="detailed_table_top" class="table table-hover">
+                                <thead id="detailed_header">
+                                    <th hscope="col" colspan=2>
                                         <div class="input-group">
                                             <input class="form-control search" placeholder="Search">
                                             <div class="input-group-append">
@@ -371,91 +445,41 @@ d.addEventListener("DOMContentLoaded", f, false);
                                         <span>
                                         </span>
                                     </th>
-                                    <th hscope="col">Goal
-                                        <span>
-                                        </span>
-                                    </th>
-                                    <th hscope="col">Raised
-                                        <span>
-                                        </span>
-                                    </th>
-                                    <th hscope="col">Type
-                                        <span>
-                                        </span>
-                                    </th>
-                                    <th hscope="col">Number of rates
-                                        <span>
-                                        </span>
-                                    </th>
-                                    <th hscope="col" data-toggle="tooltip" data-placement="right" title="Rating Aggregated Score">
-                                        RAS
-                                        <span>
-                                            <i class="fas fa-sort-down"></i>
-                                        </span>
-                                    </th>
-                                    <th hscope="col"></th>
-                                    <th hscope="col"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="row" id="detailed_row">
-                    <div class="col-1 d-none d-lg-block">
-                    </div>
-                    <div class="col-lg-10" style="padding: 0">
-                        <table id="detailed_table_top" class="table table-hover">
-                            <thead id="detailed_header">
-                                <th hscope="col" colspan=2>
-                                    <div class="input-group">
-                                        <input class="form-control search" placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-danger clear" type="button">Clear</button>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th hscope="col">Name
-                                    <span>
-                                    </span>
-                                </th>
-                            </thead>
-                        </table>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-2 d-none d-lg-block">
+            <div class="row">
+                <div class="col-lg-12" style="padding: 0">
+                    <table class="table table-hover" id="main_table">
+
+                        <tbody id="main_body">
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-lg-8">
-                <table class="table table-hover" id="main_table">
-                    <tbody id="main_body">
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-lg-12" style="padding: 02">
+                    <table id="detailed_table" class="table table-hover">
+                        <tbody id="detailed_body">
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-1 d-none d-lg-block">
+            <div class="row justify-content-center" id="no_data" style="text-align: center">
+                <div class="col-6">
+                    <p>
+                        Unfortunately there is nothing here at the moment. If you running the ICO you can apply for above mentioned rating agencies
+                        to get the score yourself, or we can gather all the documents and apply it for you. Please contact
+                        <a href="mailto:icoaggrefator@idacb.com">icoaggregator@idacb.com</a>
+                    </p>
+                </div>
             </div>
-            <div class="col-lg-10">
-                <table id="detailed_table" class="table table-hover">
-                    <tbody id="detailed_body">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row justify-content-center" id="no_data" style = "text-align: center">
-            <div class="col-6">
-                <p>
-                    Unfortunately there is nothing here at the moment. If you running the ICO you can apply for above mentioned rating agencies
-                    to get the score yourself, or we can gather all the documents and apply it for you. Please contact
-                    <a href="mailto:icoaggrefator@idacb.com">icoaggregator@idacb.com</a>
-                </p>
-            </div>
-        </div>
-        <div class="row justify-content-center" style="text-align: center">
-            <div class="col-6">
-                <small class="text-muted">
+            <div class="row justify-content-center" style="text-align: center">
+                <div class="col-6">
+                    <small class="text-muted">
                         If it seems to you unfair</br>
                         If you have any proposals</br>
                         If you found an error</br>
@@ -463,68 +487,78 @@ d.addEventListener("DOMContentLoaded", f, false);
 
                         Please write us
                         <a href="mailto:icoaggregator@idacb.com">icoaggregator@idacb.com</a>
-                </small>
-            </div>
-        </div>
-    </div>
-    <div class="modal" tabindex="-1" role="dialog" id="investdrop_modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Invest to IDACB fund</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-			<form>
-				<div class="form-group "><label for="id_name">Your name:</label><input type="text" name="name" maxlength="255" class="form-control" placeholder="John" id="id_name"></div>
-	<div class="form-group "><label for="id_surname">Your surname:</label><input type="text" name="surname" maxlength="255" class="form-control" placeholder="Doe" id="id_surname"></div>
-	<div class="form-group "><label for="id_contact">Your contact information:</label><input type="text" name="contact" maxlength="255" class="form-control" placeholder="+1 123 456 78 90, johndoe@example.com" id="id_contact"></div>
-
-				<div class="form-group">
-					<button class="btn btn-light" type="submit">Submit</button>
-				</div>
-			</form>
-            </div>
-        </div>
-    </div>
-    <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">RAS algortihms</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    We use the following rating to estimate ICO value:
-                    <img src="formula.jpg" id="formula"> Where
-                    <i>k</i> is the total number of rates,
-                    <i>k
-                        <sub>0</sub>
-                    </i> is the average number of rates,
-                    <i>&#958;</i> is the AI calculated coefficient and
-                    <i>a
-                        <sub>i</sub>
-                    </i> are rates normalized to a 0-100 scale.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Ok</button>
+                    </small>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.1.2/jquery.floatThead.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
-        crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
-        crossorigin="anonymous "></script>
-    <script src="get_rates.js "></script>
+        <div class="modal" tabindex="-1" role="dialog" id="investdrop_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invest to IDACB fund</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-</body>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group ">
+                                <label for="id_name">Your name:</label>
+                                <input type="text" name="name" maxlength="255" class="form-control" placeholder="John" id="id_name">
+                            </div>
+                            <div class="form-group ">
+                                <label for="id_surname">Your surname:</label>
+                                <input type="text" name="surname" maxlength="255" class="form-control" placeholder="Doe" id="id_surname">
+                            </div>
+                            <div class="form-group ">
+                                <label for="id_contact">Your contact information:</label>
+                                <input type="text" name="contact" maxlength="255" class="form-control" placeholder="+1 123 456 78 90, johndoe@example.com"
+                                    id="id_contact">
+                            </div>
 
-</html>
+                            <div class="form-group">
+                                <button class="btn btn-light" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">RAS algortihms</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            We use the following rating to estimate ICO value:
+                            <img src="formula.jpg" id="formula"> Where
+                            <i>k</i> is the total number of rates,
+                            <i>k
+                                <sub>0</sub>
+                            </i> is the average number of rates,
+                            <i>&#958;</i> is the AI calculated coefficient and
+                            <i>a
+                                <sub>i</sub>
+                            </i> are rates normalized to a 0-100 scale.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.1.2/jquery.floatThead.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
+                crossorigin="anonymous "></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+                crossorigin="anonymous "></script>
+            <script src="get_rates.js "></script>
+
+    </body>
+
+    </html>
