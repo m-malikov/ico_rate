@@ -53,8 +53,8 @@ def add_rates(ratings):
                     pass
                 goal = None
                 try:
-                    goal = ico_soup.find('span', text="Goal:").findNext(
-                        "span").contents[0]
+                    goal = int(ico_soup.find('span', text="Goal:").findNext(
+                        "span").contents[0])
                 except:
                     pass
                 if name not in ratings:

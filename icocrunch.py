@@ -21,5 +21,9 @@ def add_rates(ratings):
             link = link_element['onclick'].split("('", 1)[1].split("')")[0]
             if name not in ratings:
                 ratings[name] = Ico(name)
+            try:
+                float(rate)
+            except:
+                continue
             ratings[name].add_rate(link, logo, None, None, show == "PreICO", Rate(
                 "ICO Crunch", rate, float(rate) * 20))

@@ -22,6 +22,8 @@ def add_rates(ratings):
                     name = re.sub(r" \([\w]*\)", "", name)
                     logo = item.select('img')[0]['src']
                     goal = cols[4].text
+                    if not goal:
+                        goal = None
                     ico_page_link = "https://investfuture.ru" + \
                         cols[1].select('a')[0]["href"]
                     ico_page_link = ico_page_link.replace("/rating", "")

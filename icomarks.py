@@ -12,7 +12,7 @@ def add_rates(ratings):
                 base_url + "/icos/ajax_more", data={"offset": offset, "status": status}).json()["content"]
             soup = BeautifulSoup(html_text, 'html.parser')
             for item in soup.select('div.icoListItem'):
-                name = item.select('a.icoListItem__title')[0].text
+                name = item.select('a.icoListItem__title')[0].contents[0]
                 logo = base_url + item.select('img')[0]["src"]
                 ico_page_link = base_url + \
                     item.select('a.icoListItem__title')[0]["href"]
