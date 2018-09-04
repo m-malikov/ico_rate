@@ -54,27 +54,38 @@
             crossorigin="anonymous">
         <link rel="icon" type="image/png" href="favicon.png" />
         <style>
-            .logo img {
-                padding: 30px;
-                max-height: 200px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
+           @media (min-width: 800px) {
+                .logo img {
+                    padding: 15px;
+                    max-height: 120px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .logo_mobile {
+                    display: none;
+                }
             }
 
-            .logo_mobile img {
-                padding: 30px;
-                max-height: 150px;
-                display: inline-block;
-                margin-left: auto;
-                margin-right: auto;
+            @media (max-width: 800px) {
+                .logo {
+                    display: none;
+                }
+
+                .logo_mobile img {
+                    padding-bottom: 30px;
+                    max-height: 150px;
+                    display: inline-block;
+                    padding-left: 20%;
+                    padding-right: 20%;
+                }
+
+                .logo_mobile {
+		    text-align: center;
+                }
             }
-
-            .logo_mobile {
-                width: 50%;
-            }
-
-
+        
             .lead {
                 margin-top: 2em;
                 margin-bottom: 2em;
@@ -116,7 +127,7 @@
                 display: inline-block;
                 margin-left: 1em;
                 margin-bottom: 1em;
-                margin-top: 2em;
+                margin-top: 0.5em;
             }
 
             #page-header {
@@ -151,7 +162,6 @@
             }
 
             #page-title {
-                margin-bottom: 1em;
             }
 
             .table>tbody>tr>td,
@@ -284,23 +294,28 @@
             <div id="page-header">
                 <div class="container-fluid">
                     <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
-                        <div class="d-lg-none">
                             <a href="https://idacb.com/" class="logo_mobile col">
                                 <img src="logo.jpg">
                             </a>
+			    <div class="logo_mobile col">
+				    <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
+					transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h1>
+			    </div>
                             <a href="https://idacb.com/" class="logo_mobile col">
                                 <img src="fund.jpg">
                             </a>
-                        </div>
+		   </div>
+                    <div class="row justify-content-center" style="background-color: #FFF;">
 
-                        <div class="col-lg-auto">
-                            <a href="https://idacb.com/" class="logo d-none d-lg-block">
+
+                        <div class="col">
+                            <a href="https://idacb.com/" class="logo">
                                 <img src="logo.jpg">
                             </a>
                         </div>
-                        <div class="col-lg-6 text-center">
+                        <div class="col-md-8 text-center">
                             <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
-                transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h1>
+                transparent AI calculation. Invest drop will be allowed with bonuses right from here." class="logo" id="page-title">IDACB ICO Aggregator</h1>
                             <div class="d-flex justify-content-around flex-wrap">
                                 <a target="_blank" href="https://icobench.com/">
                                     <img class="rowLogo" src="https://icobench.com/images/media/Logo-Light.png">
@@ -360,7 +375,7 @@
                             </div>
                             <div class="control">
                                 <div>
-                                    Rating calculation view:
+                                    Detailed view:
                                 </div>
                                 <div class="btn-group" role="group">
                                     <button class="detailed btn btn-light btn-sm">On</button>
@@ -377,8 +392,8 @@
 
 
                         </div>
-                        <div class="col-lg-auto">
-                            <a href="https://idacb.com/" class="logo d-none d-lg-block">
+                        <div class="col">
+                            <a href="https://idacb.com/" class="logo">
                                 <img src="fund.jpg">
                             </a>
                         </div>
@@ -412,7 +427,7 @@
                                             <span>
                                             </span>
                                         </th>
-                                        <th hscope="col">Number of rates
+                                        <th hscope="col">Number of votes
                                             <span>
                                             </span>
                                         </th>
@@ -523,6 +538,7 @@
                         </form>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
                 <div class="modal-dialog" role="document">
