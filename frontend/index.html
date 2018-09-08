@@ -54,7 +54,7 @@
             crossorigin="anonymous">
         <link rel="icon" type="image/png" href="favicon.png" />
         <style>
-           @media (min-width: 800px) {
+            @media (min-width: 800px) {
                 .logo img {
                     padding: 15px;
                     max-height: 120px;
@@ -82,10 +82,10 @@
                 }
 
                 .logo_mobile {
-		    text-align: center;
+                    text-align: center;
                 }
             }
-        
+
             .lead {
                 margin-top: 2em;
                 margin-bottom: 2em;
@@ -94,6 +94,12 @@
             .rowLogo {
                 height: 10px;
                 margin-bottom: 20px;
+            }
+
+            @media (min-width: 800px) {
+                .rowLogo {
+                    height: 20px;
+                }
             }
 
             .logos {
@@ -161,8 +167,7 @@
                 z-index: 99;
             }
 
-            #page-title {
-            }
+            #page-title {}
 
             .table>tbody>tr>td,
             th {
@@ -293,18 +298,18 @@
         <div class="container-fluid">
             <div id="page-header">
                 <div class="container-fluid">
-                    <div class="row justify-content-center" style="background-color: #FFF; padding-top: 3em">
-                            <a href="https://idacb.com/" class="logo_mobile col">
-                                <img src="logo.jpg">
-                            </a>
-			    <div class="logo_mobile col">
-				    <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
+                    <div class="row justify-content-center" style="background-color: #FFF; padding-top: 1em">
+                        <a href="https://idacb.com/" class="logo_mobile col">
+                            <img src="logo.jpg">
+                        </a>
+                        <div class="logo_mobile col">
+                            <h1 data-toggle="tooltip" title=" Unique vehicle for investors to get quick look at best rated ICO in the world. Top 10 ratings every day aggregation with
 					transparent AI calculation. Invest drop will be allowed with bonuses right from here." id="page-title">IDACB ICO Aggregator</h1>
-			    </div>
-                            <a href="https://idacb.com/" class="logo_mobile col">
-                                <img src="fund.jpg">
-                            </a>
-		   </div>
+                        </div>
+                        <a href="https://idacb.com/" class="logo_mobile col">
+                            <img src="fund.jpg">
+                        </a>
+                    </div>
                     <div class="row justify-content-center" style="background-color: #FFF;">
 
 
@@ -339,7 +344,7 @@
                                     <img class="rowLogo" src="https://blocksquare.io/assets/img/logos/ico-listing/00-ico_crunch.png">
                                 </a>
                                 <a target="_blank" href="https://www.icochamps.com/">
-                                    <img class="rowLogo" src="https://www.icochamps.com/assets/dist/images/home_logo.png" style="background-color: #000; padding: 5px">
+                                    <img class="rowLogo" src="icochamps.jpg">
                                 </a>
                                 <a target="_blank" href="https://crushcrypto.com/">
                                     <img class="rowLogo" src="CrushCrypto.png">
@@ -493,7 +498,7 @@
                 </div>
             </div>
             <div class="row justify-content-center" style="text-align: center">
-                <div class="col-6">
+                <div class="col">
                     <small class="text-muted">
                         If it seems to you unfair</br>
                         If you have any proposals</br>
@@ -539,41 +544,41 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">RAS algortihms</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            We use the following rating to estimate ICO value:
-                            <img src="formula.jpg" id="formula"> Where
-                            <i>k</i> is the total number of rates,
-                            <i>k
-                                <sub>0</sub>
-                            </i> is the average number of rates,
-                            <i>&#958;</i> is the AI calculated coefficient and
-                            <i>a
-                                <sub>i</sub>
-                            </i> are rates normalized to a 0-100 scale.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-dismiss="modal">Ok</button>
-                        </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="algo_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">RAS algortihms</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        We use the following rating to estimate ICO value:
+                        <img src="formula.jpg" id="formula"> Where
+                        <i>k</i> is the total number of rates,
+                        <i>k
+                            <sub>0</sub>
+                        </i> is the average number of rates,
+                        <i>&#958;</i> is the AI calculated coefficient and
+                        <i>a
+                            <sub>i</sub>
+                        </i> are rates normalized to a 0-100 scale.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.1.2/jquery.floatThead.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
-                crossorigin="anonymous "></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
-                crossorigin="anonymous "></script>
-            <script src="get_rates.js "></script>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js " crossorigin="anonymous "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.1.2/jquery.floatThead.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
+            crossorigin="anonymous "></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+            crossorigin="anonymous "></script>
+        <script src="get_rates.js "></script>
 
     </body>
 

@@ -1,5 +1,11 @@
 "use strict";
 
+function setTopMargin() {
+  $(document.body).css("margin-top", $("#page-header").height() - 30);
+  console.log("setTopMargin");
+}
+$(window).resize(setTopMargin);
+
 var xhr = new XMLHttpRequest();
 var hostname = "icoaggregator.idacb.com/api";
 xhr.onload = function() {
@@ -169,7 +175,7 @@ xhr.onload = function() {
       if (data.length >= 100) {
         var row = document.createElement("tr");
         var cell = document.createElement("td");
-        cell.setAttribute("colspan", 9);
+        cell.setAttribute("colspan", 10);
         cell.innerText = "Show more";
         cell.style.textAlign = "center";
         row.appendChild(cell);
@@ -319,7 +325,7 @@ xhr.onload = function() {
       });
       var row = document.createElement("tr");
       var cell = document.createElement("td");
-      cell.setAttribute("colspan", 15);
+      cell.setAttribute("colspan", 16);
       cell.innerText = "Show more";
       cell.style.textAlign = "center";
       row.appendChild(cell);
@@ -513,12 +519,8 @@ xhr.onload = function() {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     });
-
     updateTables();
-
-    $(window).resize(function() {
-      $(document.body).css("margin-top", $("#page-header").height() - 30);
-    });
+    setTopMargin();
   });
 };
 xhr.open("GET", "https://" + hostname + "/levels", true);
